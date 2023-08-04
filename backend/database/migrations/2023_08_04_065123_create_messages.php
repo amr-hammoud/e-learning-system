@@ -36,10 +36,16 @@ return new class extends Migration
             $table->id();
             $table->string('content');
             $table->unsignedBigInteger('course_id');
+            $table->timestamps();
+        });
+        Schema::create('notification_statuses', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('notification_id');
             $table->unsignedBigInteger('parent_id');
             $table->integer('is_read');
             $table->timestamps();
         });
+       
 
     }
 

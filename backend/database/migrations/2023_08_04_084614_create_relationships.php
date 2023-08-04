@@ -46,7 +46,7 @@ return new class extends Migration
             $t->foreign('sender_id')->references('id')->on('users');
             $t->foreign('group_id')->references('id')->on('discussion_groups');
         });
-        Schema::table('parents', function (Blueprint $t) {
+        Schema::table('families', function (Blueprint $t) {
             $t->foreign('student_id')->references('id')->on('users');
             $t->foreign('parent_id')->references('id')->on('users');
         });
@@ -61,7 +61,10 @@ return new class extends Migration
         });
         Schema::table('notifications', function (Blueprint $t) {
             $t->foreign('course_id')->references('id')->on('courses');
-            $t->foreign('parent_id')->references('id')->on('parents');
+        });
+        Schema::table('notification_statuses', function (Blueprint $t) {
+            $t->foreign('notification_id')->references('id')->on('notifications');
+            $t->foreign('parent_id')->references('id')->on('users');
         });
         Schema::table('materials', function (Blueprint $t) {
             $t->foreign('course_id')->references('id')->on('courses');
