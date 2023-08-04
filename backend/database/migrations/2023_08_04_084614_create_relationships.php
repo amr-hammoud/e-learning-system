@@ -11,7 +11,6 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
         Schema::table('users', function (Blueprint $t) {
             $t->foreign('user_type_id')->references('id')->on('user_types');
         });
@@ -67,6 +66,10 @@ return new class extends Migration
         Schema::table('materials', function (Blueprint $t) {
             $t->foreign('course_id')->references('id')->on('courses');
         });
+        Schema::table('student_enrollments', function (Blueprint $t) {
+            $t->foreign('course_id')->references('id')->on('courses');
+            $t->foreign('user_id')->references('id')->on('users');
+        });
     }
 
     /**
@@ -74,6 +77,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('relationships');
     }
 };
