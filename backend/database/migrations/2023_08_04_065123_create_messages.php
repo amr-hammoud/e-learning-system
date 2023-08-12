@@ -55,5 +55,8 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('messages');
+        Schema::dropIfExists('discussion_groups');
+        Schema::dropIfExists('group_messages');
+        Schema::dropIfExists('notifications');
     }
 };

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('teacher_id');
             $table->string('name');
             $table->string('subject');
             $table->string('description');
@@ -22,7 +23,7 @@ return new class extends Migration
             $table->integer('total_quizzes');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->unsignedBigInteger('teacher_id');
+            $table->dateTime('meeting_link');
             $table->timestamps();
         });
     }
