@@ -3,10 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
-    Route::post('create-account', [AuthController::class, 'createAccount']);
+    Route::post('create-account', [UserController::class, 'createAccount']);
 });
 
 Route::prefix('auth')->group(function () {
