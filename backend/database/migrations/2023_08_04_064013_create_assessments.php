@@ -22,11 +22,13 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });
+
         Schema::create('assessment_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->timestamps();
         });
+
         Schema::create('materials', function (Blueprint $table) {
             $table->id();
             $table->string('title');
@@ -35,6 +37,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });
+
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
@@ -42,6 +45,7 @@ return new class extends Migration
             $table->integer('grade');
             $table->timestamps();
         });
+        
         Schema::create('feedbacks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');

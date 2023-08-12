@@ -55,7 +55,7 @@ return new class extends Migration
             $t->foreign('group_id')->references('id')->on('discussion_groups')->onDelete('cascade');
         });
 
-        Schema::table('families', function (Blueprint $t) {
+        Schema::table('parents', function (Blueprint $t) {
             $t->foreign('student_id')->references('id')->on('users')->onDelete('cascade');
             $t->foreign('parent_id')->references('id')->on('users')->onDelete('cascade');
         });

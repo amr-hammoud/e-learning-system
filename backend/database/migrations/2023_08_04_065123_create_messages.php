@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('content');
             $table->timestamps();
         });
+
         Schema::create('discussion_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });
+
         Schema::create('group_messages', function (Blueprint $table) {
             $table->id();
             $table->string('content');
@@ -32,12 +34,14 @@ return new class extends Migration
             $table->unsignedBigInteger('group_id');
             $table->timestamps();
         });
+
         Schema::create('notifications', function (Blueprint $table) {
             $table->id();
             $table->string('content');
             $table->unsignedBigInteger('course_id');
             $table->timestamps();
         });
+        
         Schema::create('notification_statuses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('notification_id');

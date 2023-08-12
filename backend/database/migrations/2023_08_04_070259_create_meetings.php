@@ -19,14 +19,16 @@ return new class extends Migration
             $table->date('date_time');
             $table->timestamps();
         });
+
         Schema::create('sessions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('course_id');
             $table->string('meeting_link');
             $table->date('date_time');
-            $table->date('is_Virtual');
+            $table->boolean('is_Virtual');
             $table->timestamps();
         });
+
         Schema::create('attendances', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
