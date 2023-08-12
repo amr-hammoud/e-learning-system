@@ -23,7 +23,7 @@ return new class extends Migration
             $table->integer('total_quizzes');
             $table->dateTime('start_date');
             $table->dateTime('end_date');
-            $table->dateTime('meeting_link');
+            $table->string('meeting_link');
             $table->timestamps();
         });
     }
