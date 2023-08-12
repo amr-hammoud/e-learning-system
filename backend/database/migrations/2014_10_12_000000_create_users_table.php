@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->unsignedBigInteger('user_type_id');
-            $table->rememberToken();
             $table->timestamps();
         });
 
@@ -27,7 +26,7 @@ return new class extends Migration
             $table->string('name');
             $table->timestamps();
         });
-        
+
         Schema::create('parents', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');

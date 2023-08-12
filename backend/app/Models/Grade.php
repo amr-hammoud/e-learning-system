@@ -12,6 +12,7 @@ class Grade extends Model
     public function userId(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function assessment_id(){
         return $this->belongsTo(Assessment::class, 'assessment_id');
     }

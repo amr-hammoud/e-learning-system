@@ -12,6 +12,7 @@ class Feedback extends Model
     public function userId(){
         return $this->belongsTo(User::class, 'user_id');
     }
+    
     public function assessmentId(){
         return $this->belongsTo(Assessment::class, 'assessment_id');
     }

@@ -38,6 +38,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<string, string>
      */
+    
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -45,45 +46,59 @@ class User extends Authenticatable implements JWTSubject
     public function courses(){
         return $this->belongsToMany(Course::class, 'student_enrollments');
     }
+
     public function userType(){
         return $this->belongsTo(UserType::class, 'user_type_id'); 
     }
+
     public function sender(){
         return $this->hasMany(Message::class, 'sender_id'); 
     }
+
     public function receiver(){
         return $this->hasMany(Message::class, 'receiver_id'); 
     }
+
     public function feedbacks(){
         return $this->hasMany(FeedBack::class, 'user_id');
     }
+
     public function grades(){
         return $this->hasMany(Grade::class, 'user_id');
     }
+
     public function submission(){
         return $this->hasMany(Submission::class, 'user_id');
     }
+
     public function attendance(){
         return $this->hasMany(Attendance::class, 'user_id');
     }
+
     public function teacher(){
         return $this->hasMany(Course::class, 'teacher_id');
     }
+
     public function groupMessages(){
         return $this->hasMany(GroupMessage::class, 'sender_id');
     }
+
     public function parents(){
     return $this->belongsToMany(User::class, 'families', 'student_id', 'parent_id');
     }
+
     public function children(){
         return $this->belongsToMany(User::class, 'families', 'parent_id', 'student_id');
     }
+
     public function host(){
         return $this->hasMany(Meeting::class, 'host_id'); 
     }
+
     public function guest(){
         return $this->hasMany(Meeting::class, 'guest_id'); 
     }
+
     public function notifications(){
         return $this->hasMany(NotificationStatus::class, 'parent_id');
     }

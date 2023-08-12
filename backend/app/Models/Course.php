@@ -12,24 +12,30 @@ class Course extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'student_enrollments');
     }
+    
     public function assessments(){
         return $this->hasMany(Assessment::class, 'course_id');
     }
-    public function teacher_id(){
+    public function teacher(){
         return $this->belongsTo(User::class, 'teacher_id');
     }
+
     public function notifictions(){
         return $this->hasMany(Notification::class, 'course_id');
     }
+
     public function materials(){
         return $this->hasMany(Material::class, 'course_id');
     }
+
     public function sessions(){
         return $this->hasMany(Session::class, 'course_id');
     }
+
     public function discussionGroup(){
         return $this->hasOne(DiscussionGroup::class, 'course_id');
     }
+
 
 }
 
