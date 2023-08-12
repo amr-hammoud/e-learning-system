@@ -15,7 +15,7 @@ class UserController extends Controller{
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255', 
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
             'user_type' => 'required|string|max:255',
         ]);
@@ -36,18 +36,18 @@ class UserController extends Controller{
             ], 422);
         }
 
-        $user_type_id = UserType::where('name', $user_type)->first();
-
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_type_id' => $user_type_id,
+            'user_type_id' => $user_type->id,
         ]);
 
         $token = Auth::login($user);
-        
+        $user->user_type = $user_type->name;
+        $user->makeHidden(['user_type_id', 'id']);
+
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
