@@ -49,10 +49,10 @@ class User extends Authenticatable
         return $this->belongsTo(UserType::class, 'user_type_id'); 
     }
     public function sender(){
-        return $this->belongsTo(Message::class, 'sender_id'); 
+        return $this->hasMany(Message::class, 'sender_id'); 
     }
     public function receiver(){
-        return $this->belongsTo(Message::class, 'receiver_id'); 
+        return $this->hasMany(Message::class, 'receiver_id'); 
     }
     public function feedbacks(){
         return $this->hasMany(FeedBack::class, 'user_id');
@@ -79,10 +79,10 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'families', 'parent_id', 'student_id');
     }
     public function host(){
-        return $this->belongsTo(Meeting::class, 'host_id'); 
+        return $this->hasMany(Meeting::class, 'host_id'); 
     }
     public function guest(){
-        return $this->belongsTo(Meeting::class, 'guest_id'); 
+        return $this->hasMany(Meeting::class, 'guest_id'); 
     }
     public function notifications(){
         return $this->hasMany(NotificationStatus::class, 'parent_id');
