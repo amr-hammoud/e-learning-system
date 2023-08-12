@@ -8,6 +8,7 @@ use App\Http\Controllers\UserController;
 
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [UserController::class, 'createAccount']);
+    Route::post('update-account/{id}', [UserController::class, 'updateAccount']);
 });
 
 Route::prefix('auth')->group(function () {
