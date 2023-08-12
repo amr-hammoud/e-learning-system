@@ -22,6 +22,18 @@ return new class extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('user_types', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->timestamps();
+        });
+        Schema::create('parents', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('parent_id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -30,5 +42,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('users');
+        Schema::dropIfExists('parents');
+        Schema::dropIfExists('user_types');
     }
 };

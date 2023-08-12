@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('course_id');
             $table->string('meeting_link');
             $table->date('date_time');
+            $table->date('is_Virtual');
             $table->timestamps();
         });
         Schema::create('attendances', function (Blueprint $table) {
@@ -42,5 +43,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('meetings');
+        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('attendances');
     }
 };
