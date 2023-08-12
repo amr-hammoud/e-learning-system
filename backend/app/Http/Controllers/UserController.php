@@ -127,5 +127,22 @@ class UserController extends Controller{
             'users' => $users,
         ]);
     }
+
+    public function getUsersByType($type){
+        $user_type = UserType::where('name', ucfirst($type))->first();
+        if (!$user_type){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid user type',
+            ], 422);
+        }
+
+        $users = User::where('user_type_id', $user_type->id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'users' => $users,
+        ]);
+    }
    
 }
