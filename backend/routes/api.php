@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ParentController;
 
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [AuthController::class, 'createAccount']);
@@ -15,7 +15,7 @@ Route::prefix('auth')->group(function () {
     Route::post('refresh', [AuthController::class, 'refresh']);
     
     Route::group(["prefix" => "parent"], function(){
-        Route::get("get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
+        Route::get("{parent}/get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
     });
 
     
