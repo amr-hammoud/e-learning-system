@@ -13,5 +13,11 @@ Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
+    
+    Route::group(["prefix" => "parent"], function(){
+        Route::get("get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
+    });
+
+    
 });
 
