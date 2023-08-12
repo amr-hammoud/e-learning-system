@@ -119,6 +119,13 @@ class UserController extends Controller{
         ]);
     }
 
-    
+    public function getAllUsers(){
+        $users = User::with('userType:id,name')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'users' => $users,
+        ]);
+    }
    
 }
