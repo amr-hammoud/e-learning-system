@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\Submission;
 
 use Auth;
 class StudentController extends Controller
@@ -44,5 +45,17 @@ class StudentController extends Controller
     public function getMaterials(Request $request){
         $course = Course::find($request->course_id);
         return $course->materials;
+    }
+
+    public function completedAssessments(){
+        $user = User::find(1);
+        if($user){
+            return $user->submission;
+        }
+        return response()->json([
+            "status"=> "failed",
+            "message"=>"no completed assessments",
+        ]);
+        
     }
 }
