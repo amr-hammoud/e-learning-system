@@ -16,7 +16,9 @@ Route::prefix('auth')->group(function () {
     
     Route::group(["prefix" => "parent"], function(){
         Route::get("{parent}/get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
-    });
+        Route::post('message-teacher', [ParentController::class, "sendMessage"]);
+        Route::post('messages-teacher', [ParentController::class, "getMessages"]);
+       });
 
     
 });
