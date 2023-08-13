@@ -122,4 +122,21 @@ class CourseController extends Controller
         ]);
     }
 
+    public function deleteCourse($id){
+        $course = Course::find($id);
+        if (!$course){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid course id',
+            ], 422);
+        }
+
+        $course->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Course deleted successfully',
+        ]);
+    }
+
 }
