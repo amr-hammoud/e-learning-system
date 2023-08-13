@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Submission;
 use App\Models\Assessment;
 use App\Models\DiscussionGroup;
+use App\Models\GroupMessage;
+
 use Carbon\Carbon;
 use Auth;
 class StudentController extends Controller
@@ -80,7 +82,7 @@ class StudentController extends Controller
         return $upcomingAssessments;
     }
     public function getGrades(){
-        $user = User::find(1);
+        $user = Auth::user();
 
         return $user->grades;
     }
@@ -92,5 +94,25 @@ class StudentController extends Controller
         foreach($dscussion_messages as $message){
             return $message->with('user')->get();
         }
+    }
+    public function insertGroupMessage(Request $request){
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+        $content = $request->content;
+        $sender_id = Auth::user();
+        $group_id = $request->group_id;
+
+        $message = new GroupMessage();
+        $message->content = $content;
+        $message->sender_id = $sender_id;
+        $message->group_id = $group_id;
+
+    
+        $message->save();
+
+        return response()->json([
+            "status" => "success",
+        ]);
     }
 }

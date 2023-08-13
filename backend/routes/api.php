@@ -8,6 +8,7 @@ use App\Http\Controllers\StudentController;
 
 
 
+Route::post('insertGroupMessage', [StudentController::class, 'insertGroupMessage']);
 
 
 
