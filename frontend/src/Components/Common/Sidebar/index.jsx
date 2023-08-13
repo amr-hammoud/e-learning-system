@@ -3,10 +3,8 @@ import "./style.css";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 
-function Sidebar({ items, selected }) {
-	const [selectedTab, setSelectedTab] = useState(
-		selected ? selected : items[0]
-	);
+function Sidebar({ items, selected = items[0] }) {
+	const [selectedTab, setSelectedTab] = useState(selected);
 
 	const selectHandler = (value) => {
 		setSelectedTab(value);
