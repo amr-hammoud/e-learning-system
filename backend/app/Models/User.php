@@ -84,7 +84,7 @@ class User extends Authenticatable implements JWTSubject
     }
 
     public function parents(){
-    return $this->belongsToMany(User::class, 'parents', 'student_id', 'parent_id');
+    return $this->belongsToMany(User::class, 'parents', 'student_id', 'parent_id')->withPivot('student_id');
     }
 
     public function children(){
