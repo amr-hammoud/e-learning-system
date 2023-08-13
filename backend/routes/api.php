@@ -6,12 +6,6 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 
 
-
-
-Route::post('insertGroupMessage', [StudentController::class, 'insertGroupMessage']);
-
-
-
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [AuthController::class, 'createAccount']);
 });
@@ -31,6 +25,12 @@ Route::group(["middleware"=>"student","prefix"=>"student"], function(){
 
     Route::prefix('interActiveLearning')->group(function () {
         Route::post('groupMessages', [StudentController::class, 'getGroupMessages']);
+        Route::post('insertGroupMessage', [StudentController::class, 'insertGroupMessage']);
+    });
+
+    Route::prefix('chatMessages')->group(function () {
+        Route::post('getPrivateMessages', [StudentController::class, 'getChatMessages']);
+        Route::post('sendMessage', [StudentController::class, 'sendChatMessage']);
     });
 });
 

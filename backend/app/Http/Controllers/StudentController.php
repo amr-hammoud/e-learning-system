@@ -9,6 +9,7 @@ use App\Models\Submission;
 use App\Models\Assessment;
 use App\Models\DiscussionGroup;
 use App\Models\GroupMessage;
+use App\Models\Message;
 
 use Carbon\Carbon;
 use Auth;
@@ -114,5 +115,38 @@ class StudentController extends Controller
         return response()->json([
             "status" => "success",
         ]);
+    }
+    public function getChatMessages(Request $request){
+        $senderId = $request->sender_id;
+        $receiverId = Auth::user();
+
+        $messages = Message::where('sender_id', $senderId)
+                            ->with('sender:first_name,last_name,id')
+                            ->get();
+
+        return $messages;
+        
+    }
+    public function sendChatMessage(Request $request){
+        $request->validate([
+            'content' => 'required|string',
+        ]);
+        $sender_id =Auth::user();;
+        $receiver_id = $request->receiver_id;
+        $content = $request->content;
+
+        $message = new Message();
+
+        $message->sender_id = $sender_id;
+        $message->receiver_id = $receiver_id;
+        $message->content= $content;
+
+        $message->save();
+
+        return response()->json([
+            "status" => "success",
+        ]);
+
+        
     }
 }
