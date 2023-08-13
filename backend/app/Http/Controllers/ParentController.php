@@ -11,6 +11,7 @@ use App\Models\Course;
 use App\Models\Session;
 use App\Models\Attendance;
 use App\Models\Notification;
+use App\Models\NotificationStatus;
 
 class ParentController extends Controller
 {
@@ -136,14 +137,22 @@ class ParentController extends Controller
         $courses= $student->courses->pluck('id','name');
         foreach ($courses as $courseName => $courseId) {
             $course = Course::find($courseId);
+            $teacher=$course->teacher->first_name ." ". $course->teacher->last_name;
+            
             $notification=Notification::all()->where("course_id",$courseId);
             $courseNameWithNotification[] = [
                 'course_name' => $course->name,
+                'teacher name'=>$teacher,
                 'notification' => $notification
-            ];
-            
-        }
+            ]; 
+            foreach($notification as $n){
+                $read_notification=NotificationStatus::where("parent_id",Auth::user()->id)->where("notification_id",$n->id)->first();  
+                $read_notification->is_read=1;
+                $read_notification->save();   
+            }
+        }           
         return response()->json([
+        'status'=>'Marked as read successfully', 
         'notifications'=>$courseNameWithNotification]);
     }
 }
