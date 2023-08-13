@@ -34,7 +34,7 @@ class ParentController extends Controller
         }    
         else{
             return response()->json([
-                'result'=>"An error has Occured"]);}
+                'result'=>"An error has cccured"]);}
     }
 
     public function sendMessage(Request $request){
@@ -56,7 +56,7 @@ class ParentController extends Controller
             ]);
         }
         else{
-            return response()->json(['state'=>"false"]);
+            return response()->json(['status'=>"failed"]);
 
         };        
     }
@@ -73,8 +73,7 @@ class ParentController extends Controller
                 'message sent'=>$message_sent,
                 'message received'=>$message_received]);               
         } else{
-        return response()->json(['state'=>"false"]);
-        }; 
-    
+        return response()->json(['status'=>"failed"]);
+        };     
     }
 }
