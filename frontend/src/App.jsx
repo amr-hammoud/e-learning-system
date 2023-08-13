@@ -7,8 +7,10 @@ import AuthorizationPage from "./Pages/Common/Authorization";
 import AdminLandingPage from "./Pages/Admin/Landing";
 import ParentLandingPage from "./Pages/Parent/Landing";
 import StudentLandingPage from "./Pages/Student/Landing";
-import TeacherLandingPage from "./Pages/Teacher/Landing";
 import E404 from "./Pages/E404";
+import TeacherCoursesPage from "./Pages/Teacher/Courses";
+import TeacherMessagesPage from "./Pages/Teacher/Messages";
+import TeacherConferencesPage from "./Pages/Teacher/Conferences";
 
 function App() {
 	return (
@@ -16,7 +18,9 @@ function App() {
 			<Routes>
 				<Route path="/" element={<AuthorizationPage />} />
 				<Route path="/admin" element={<AdminLandingPage />} />
-				<Route path="/teacher" element={<TeacherLandingPage />} />
+				<Route path="/teacher/courses" element={<TeacherCoursesPage />} />
+				<Route path="/teacher/messages" element={<TeacherMessagesPage />} />
+				<Route path="/teacher/conferences" element={<TeacherConferencesPage />} />
 				<Route path="/student" element={<StudentLandingPage />} />
 				<Route path="/parent" element={<ParentLandingPage />} />
 				<Route path="*" element={<E404 />} />
