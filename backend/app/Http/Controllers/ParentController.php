@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\Grade;
 use App\Models\Message;
 use App\Models\Course;
+use App\Models\Session;
+use App\Models\Attendance;
 
 class ParentController extends Controller
 {
@@ -86,7 +88,6 @@ class ParentController extends Controller
         $student_id=$parent->children->first()->id;
         $student = User::find($student_id);
         $courses= $student->courses->pluck('id','name');
-        $sessions=[];
         $courseNameWithSessions=[];
         foreach ($courses as $courseName => $courseId) {
            $course = Course::with('sessions')->find($courseId);
@@ -94,11 +95,35 @@ class ParentController extends Controller
                 'course_name' => $course->name,
                 'sessions' => $course->sessions
             ];
-            $courseSessions[]=$courseNameWithSessions;
         }       
         return response()->json([
             'student_id'=>$student_id,
             'student'=>$student->first_name." ".$student->last_name,
             'sessions'=> $courseNameWithSessions]);
+    }
+    public function viewAttendance(Request $request){
+        $parent=Auth::user();
+        $student=$parent->children->first();
+        $student_id=$student->id;
+        $courses= $student->courses->pluck('id','name');
+        $courseNameWithAttendance=[];
+        foreach ($courses as $courseName => $courseId) {
+            $course = Course::find($courseId);
+            $sessions = Session::where('course_id', $course->id)->get();
+
+            foreach ($sessions as $session) {
+                $nb_sessions_held=Session::where("course_id",$course->id)->count();
+                $attendances = Attendance::where("user_id", $student_id)->where("session_id",$session->id)->where("attended",1)->count();
+                $courseNameWithAttendance[] = [
+                    'course_name' => $course->name,
+                    "nb_sessions_held"=>$nb_sessions_held,
+                    'attendance' => $attendances
+                ];
+                }
+            }        
+        return response()->json([
+            'student_id'=>$student_id,
+            'student'=>$student->first_name." ".$student->last_name,
+            'attendance'=>$courseNameWithAttendance]);
     }
 }
