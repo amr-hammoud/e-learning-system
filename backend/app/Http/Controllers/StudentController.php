@@ -37,9 +37,12 @@ class StudentController extends Controller
         $course = Course::find($request->course_id);
 
         $user->courses()->attach($course->id);
-
         return response()->json([
             "status" => "success",
         ]);
+    }
+    public function getMaterials(Request $request){
+        $course = Course::find($request->course_id);
+        return $course->materials;
     }
 }
