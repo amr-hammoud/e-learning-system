@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Submission;
 use App\Models\Assessment;
+use App\Models\DiscussionGroup;
 use Carbon\Carbon;
 use Auth;
 class StudentController extends Controller
@@ -82,5 +83,14 @@ class StudentController extends Controller
         $user = User::find(1);
 
         return $user->grades;
+    }
+    public function getGroupMessages(Request $request){
+        $disscussion_group  = DiscussionGroup::where("course_id", $request->course_id)->first();
+        
+        $dscussion_messages = $disscussion_group->groupMessages;
+
+        foreach($dscussion_messages as $message){
+            return $message->with('user')->get();
+        }
     }
 }

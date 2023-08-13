@@ -10,6 +10,7 @@ use App\Http\Controllers\StudentController;
 
 
 
+
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [AuthController::class, 'createAccount']);
 });
@@ -25,6 +26,10 @@ Route::group(["middleware"=>"student","prefix"=>"student"], function(){
         Route::post('getcompletedAssessments', [StudentController::class, 'completedAssessments']);
         Route::post('getAssesments', [StudentController::class, 'upcomingAssessments']);
         Route::get('grades', [StudentController::class, 'getGrades']);
+    });
+
+    Route::prefix('interActiveLearning')->group(function () {
+        Route::post('groupMessages', [StudentController::class, 'getGroupMessages']);
     });
 });
 
