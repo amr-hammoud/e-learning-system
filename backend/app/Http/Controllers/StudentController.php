@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
 use App\Models\Submission;
-
+use App\Models\Assessment;
+use Carbon\Carbon;
 use Auth;
 class StudentController extends Controller
 {
@@ -48,7 +49,7 @@ class StudentController extends Controller
     }
 
     public function completedAssessments(){
-        $user = User::find(1);
+        $user = Auth::user();
         if($user){
             return $user->submission;
         }
@@ -56,6 +57,30 @@ class StudentController extends Controller
             "status"=> "failed",
             "message"=>"no completed assessments",
         ]);
-        
+    }
+    public function upcomingAssessments(Request $request){
+        $user = Auth::user();
+
+        $submittedAssessmentIds = $user->submission()->pluck('assessment_id')->toArray();
+
+        $notSubmittedAssessments = Assessment::whereNotIn('id', $submittedAssessmentIds)->get();
+
+        $upcomingAssessments = [];
+        $missedAssessments = [];
+        $currentDate = Carbon::now();
+        foreach ($notSubmittedAssessments as $assessment) {
+            if($assessment->due_date >= $currentDate){
+                $upcomingAssessments[] = $assessment;
+            }
+            else{
+                $missedAssessments[] = $assessment;
+            }
+        }
+        return $upcomingAssessments;
+    }
+    public function getGrades(){
+        $user = User::find(1);
+
+        return $user->grades;
     }
 }
