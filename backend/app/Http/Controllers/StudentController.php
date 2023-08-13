@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
+
+use Auth;
 class StudentController extends Controller
 {
     //
@@ -29,5 +31,15 @@ class StudentController extends Controller
 
         }
         return $availabe_courses_array;
+    }
+    public function enroll(Request $request){
+        $user = Auth::user();
+        $course = Course::find($request->course_id);
+
+        $user->courses()->attach($course->id);
+
+        return response()->json([
+            "status" => "success",
+        ]);
     }
 }

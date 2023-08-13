@@ -14,6 +14,8 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
 Route::group(["middleware"=>"student","prefix"=>"student"], function(){
     Route::prefix('courseEnrollments')->group(function () {
         Route::get('availableCourses', [StudentController::class, 'getAvailableCourses']);
+        Route::post('enroll', [StudentController::class, 'enroll']);
+
     });
 });
 Route::prefix('auth')->group(function () {
