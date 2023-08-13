@@ -21,6 +21,7 @@ Route::prefix('auth')->group(function () {
         Route::post('get-student-schedule-records', [ParentController::class, "viewSchedule"]);
         Route::post('get-student-attendance-records', [ParentController::class, "viewAttendance"]);
         Route::post('get-notifications', [ParentController::class, "viewNotifications"]);
+        Route::post('schedule-meeting', [ParentController::class, "scheduleMeeting"]);
        });    
 });
 

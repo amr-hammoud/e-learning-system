@@ -12,6 +12,7 @@ use App\Models\Session;
 use App\Models\Attendance;
 use App\Models\Notification;
 use App\Models\NotificationStatus;
+use App\Models\Meeting;
 
 class ParentController extends Controller
 {
@@ -154,5 +155,22 @@ class ParentController extends Controller
         return response()->json([
         'status'=>'Marked as read successfully', 
         'notifications'=>$courseNameWithNotification]);
+    }
+    public function scheduleMeeting(Request $request){
+        $course=Course::where('name',$request->name)->first();
+        $link=$course->meeting_link;
+        $teacher_id=$course->teacher_id;
+        $teacher=User::find($teacher_id);
+        $meeting=new Meeting;
+        $meeting->host_id=Auth::user()->id;
+        $meeting->guest_id=$teacher_id;
+        $meeting->meeting_link=$link;
+        $meeting->date_time=$request->meeting_date;
+        $meeting->save();
+        $meeting->host_name=Auth::user()->first_name;
+        $meeting->guest_name=$teacher->first_name . " ". $teacher->last_name;
+        return response()->json(['status'=>'meeting scheduled successfully',
+                                    'meeting details'=>$meeting                   
+        ]);
     }
 }
