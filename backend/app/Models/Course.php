@@ -12,7 +12,10 @@ class Course extends Model
     public function users(){
         return $this->belongsToMany(User::class, 'student_enrollments');
     }
-    
+    public function getUserenrollmentsCount()
+    {
+        return $this->users->count();
+    }
     public function assessments(){
         return $this->hasMany(Assessment::class, 'course_id');
     }
