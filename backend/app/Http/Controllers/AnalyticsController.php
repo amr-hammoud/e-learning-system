@@ -46,10 +46,82 @@ class AnalyticsController extends Controller
             }
         }
 
-        $assignment_average = round(($total_assignments_grade / $total_assigned_assignments));
+        $assignments_average = round(($total_assignments_grade / $total_assigned_assignments));
 
-        return $assignment_average;
+        return $assignments_average;
     }
+
+    public function calculateStudentQuizzesAverage($course_id, $student_id){
+        $course = Course::find($course_id);
+        $total_assigned_quizzes = Course::find($course_id)->assessments->where('assessment_type_id', '1')->count();
+
+        $quizzes = Assessment::where('course_id', $course_id)->where('assessment_type_id', '1')->get();
+
+        $total_quizzes_grade = 0;
+
+        foreach ($quizzes as $quiz){
+            $grade = Grade::where('assessment_id', $quiz->id)->where('user_id', $student_id)->first();
+            if ($grade){
+                $total_quizzes_grade += $grade->grade;
+            }
+        }
+
+        $quizzes_average = round(($total_quizzes_grade / $total_assigned_quizzes));
+
+        return $quizzes_average;
+    }
+
+    public function calculateClassAssignmentsAverage($course_id){
+        $course = Course::find($course_id);
+
+        $students = Course::find($course_id)->students;
+
+        $total_students = $students->count();
+
+        $total_assignments_grade = 0;
+
+        foreach ($students as $student){
+            $total_assignments_grade += $this->calculateStudentAssignmentsAverage($course_id, $student->id);
+        }
+
+        $class_assignments_average = round(($total_assignments_grade / $total_students));
+
+        return $class_assignments_average;
+
+    }
+
+    public function calculateClassQuizzesAverage($course_id){
+        $course = Course::find($course_id);
+
+        $students = Course::find($course_id)->students;
+
+        $total_students = $students->count();
+
+        $total_quizzes_grade = 0;
+
+        foreach ($students as $student){
+            $total_quizzes_grade += $this->calculateStudentQuizzesAverage($course_id, $student->id);
+        }
+
+        $class_quizzes_average = round(($total_quizzes_grade / $total_students));
+
+        return $class_quizzes_average;
+
+    }
+
+    public function getTeacherPerformance($course_id){
+        $course = Course::find($course_id);
+
+        $class_assignments_average = $this->calculateClassAssignmentsAverage($course_id);
+        $class_quizzes_average = $this->calculateClassQuizzesAverage($course_id);
+
+        $teacher_performance = round(($class_assignment_average * 0.4) + ($class_quiz_average * 0.6));
+
+        return $teacher_performance;
+
+    }
+    
+
 
 
 }
