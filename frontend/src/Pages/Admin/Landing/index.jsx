@@ -1,9 +1,13 @@
 import React from 'react'
 import './style.css'
+import Sidebar from '../../../Components/Common/Sidebar'
 
 function AdminLandingPage() {
   return (
-    <div>AdminLandingPage</div>
+    <div className="page flex">
+			<Sidebar />
+			<div className="container">AdminLandingPage</div>
+		</div>
   )
 }
 

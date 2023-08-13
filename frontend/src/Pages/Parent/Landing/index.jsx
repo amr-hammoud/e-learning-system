@@ -1,9 +1,13 @@
 import React from 'react'
 import './style.css'
+import Sidebar from '../../../Components/Common/Sidebar'
 
 function ParentLandingPage() {
   return (
-    <div>ParentLandingPage</div>
+    <div className="page flex">
+			<Sidebar />
+			<div className="container">ParentLandingPage</div>
+		</div>
   )
 }
 
