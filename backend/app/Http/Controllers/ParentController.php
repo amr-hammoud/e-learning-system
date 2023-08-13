@@ -10,6 +10,7 @@ use App\Models\Message;
 use App\Models\Course;
 use App\Models\Session;
 use App\Models\Attendance;
+use App\Models\Notification;
 
 class ParentController extends Controller
 {
@@ -40,7 +41,7 @@ class ParentController extends Controller
         }       
         else{
             return response()->json([
-                'result'=>"An error has cccured"]);}
+                'result'=>"An error has occured"]);}
     }
 
     public function sendMessage(Request $request){
@@ -125,5 +126,24 @@ class ParentController extends Controller
             'student_id'=>$student_id,
             'student'=>$student->first_name." ".$student->last_name,
             'attendance'=>$courseNameWithAttendance]);
+    }
+
+    public function viewNotifications(){
+        $parent=Auth::user();
+        $student_id=$parent->children->first()->id;
+        $student = User::find($student_id);
+        $courseNameWithNotification=[];
+        $courses= $student->courses->pluck('id','name');
+        foreach ($courses as $courseName => $courseId) {
+            $course = Course::find($courseId);
+            $notification=Notification::all()->where("course_id",$courseId);
+            $courseNameWithNotification[] = [
+                'course_name' => $course->name,
+                'notification' => $notification
+            ];
+            
+        }
+        return response()->json([
+        'notifications'=>$courseNameWithNotification]);
     }
 }
