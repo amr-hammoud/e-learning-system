@@ -61,5 +61,20 @@ class ParentController extends Controller
         };        
     }
 
-
+    public function getMessages(Request $request){
+        $parent=Auth::user();
+        $teacher=User::where("first_name",$request->first_name)->where("last_name",$request->last_name)->first();
+        if($teacher){
+            $message_sent=$parent->sender()->orderBy('created_at')->pluck('content');
+            $message_received=$parent->receiver()->orderBy('created_at','asc')->pluck('content');
+            return response()->json([
+                'parent'=>$parent->first_name. " ".$parent->last_name,
+                'teacher'=>$teacher->first_name." ". $teacher->last_name,
+                'message sent'=>$message_sent,
+                'message received'=>$message_received]);               
+        } else{
+        return response()->json(['state'=>"false"]);
+        }; 
+    
+    }
 }
