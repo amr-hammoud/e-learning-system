@@ -8,7 +8,6 @@ use App\Models\Course;
 
 class TeacherController extends Controller
 {
-    //TODO: Get Teacher Courses
     //TODO: Get Single Course
     //TODO: Material CRUD
     //TODO: Assessment CRUD
@@ -22,14 +21,18 @@ class TeacherController extends Controller
     //TODO: Grade & Feedback
     //TODO: Conferences CRUD
 
-    public function courses()
+    public function courses(Request $request)
     {
-        $user = Auth::user();
-        $courses = Course::where("teacher_id", $user->id)->get();
+        if ($request->id) {
+            $courses = Course::where("id", $request->id)->get();
+        } else {
+            $user = Auth::user();
+            $courses = Course::where("teacher_id", $user->id)->get();
+        }
+
         return response()->json([
             'status' => 'success',
             'data' => $courses,
-        ],200);
-
+        ], 200);
     }
 }
