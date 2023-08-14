@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\StudentController;
 
-Route::get('available-courses', [StudentController::class, 'getAvailableCourses']);
+
 
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [AuthController::class, 'createAccount']);
@@ -13,7 +13,7 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
 
 Route::group(["middleware"=>"student","prefix"=>"student"], function(){
     Route::prefix('course-enrollments')->group(function () {
-        
+        Route::get('available-courses', [StudentController::class, 'getAvailableCourses']);
         Route::post('enroll', [StudentController::class, 'enroll']);
         Route::post('get-materials', [StudentController::class, 'getMaterials']);
     });

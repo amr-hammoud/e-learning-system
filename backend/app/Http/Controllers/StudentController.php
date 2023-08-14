@@ -162,7 +162,7 @@ class StudentController extends Controller
 
         
     }
-    //no two meetings in the same time
+    
     public function meetingSchedule(Request $request){
         $request->validate([
             'date_time' => 'required|date',
@@ -170,11 +170,22 @@ class StudentController extends Controller
         $course_id = $request->course_id;
         
         $guest = Auth::user();
+        
         $date_time = $request->date_time;
         $course = Course::find($course_id);
         $host_id = $course->teacher_id;
         $meeting_link = $course->meeting_link;
         
+        $host_meetings = Meeting::where("host_id",$host_id)->get();
+
+        foreach($host_meetings as $chcked_meeting){
+            if($chcked_meeting->date_time == $date_time){
+                return response()->json([
+                    "status" => "failed",
+                    "message" => "teacher have meeting in this time.",
+                ]);
+            }
+        }
         $sessions = $course->sessions;
         foreach($sessions as $session){
             if($session->date_time == $date_time){
