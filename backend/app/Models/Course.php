@@ -9,24 +9,13 @@ class Course extends Model
 {
     use HasFactory;
 
-    protected $fillable=[
-        'name',
-        'subject',
-        'description',
-        'max_enrollments',
-        'total_sessions',
-        'total_assignments',
-        'total_quizzes',
-        'start_date',
-        'end_date',
-        'meeting_link',
-        'teacher_id',
-    ];
-
-    public function users(){
+    public function courses(){
         return $this->belongsToMany(User::class, 'student_enrollments');
     }
-    
+    public function getUserenrollmentsCount()
+    {
+        return $this->courses->count();
+    }
     public function assessments(){
         return $this->hasMany(Assessment::class, 'course_id');
     }

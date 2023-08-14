@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\StudentController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
 
@@ -26,9 +28,43 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
 
 });
 
+Route::group(["middleware"=>"student","prefix"=>"student"], function(){
+    Route::prefix('courseEnrollments')->group(function () {
+        Route::get('availableCourses', [StudentController::class, 'getAvailableCourses']);
+        Route::post('enroll', [StudentController::class, 'enroll']);
+        Route::post('getMaterials', [StudentController::class, 'getMaterials']);
+    });
+
+    Route::prefix('ProgressTracking')->group(function () {
+        Route::post('getcompletedAssessments', [StudentController::class, 'completedAssessments']);
+        Route::post('getAssesments', [StudentController::class, 'upcomingAssessments']);
+        Route::get('grades', [StudentController::class, 'getGrades']);
+    });
+
+    Route::prefix('interActiveLearning')->group(function () {
+        Route::post('groupMessages', [StudentController::class, 'getGroupMessages']);
+        Route::post('insertGroupMessage', [StudentController::class, 'insertGroupMessage']);
+    });
+
+    Route::prefix('chatMessages')->group(function () {
+        Route::post('getPrivateMessages', [StudentController::class, 'getChatMessages']);
+        Route::post('sendMessage', [StudentController::class, 'sendChatMessage']);
+    });
+});
+
 Route::prefix('auth')->group(function () {
     Route::post('login', [AuthController::class, 'login']);
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
+    
+    Route::group(["prefix" => "parent"], function(){
+        Route::get("{parent}/get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
+        Route::post('message-teacher', [ParentController::class, "sendMessage"]);
+        Route::post('messages-teacher', [ParentController::class, "getMessages"]);
+        Route::post('get-student-schedule-records', [ParentController::class, "viewSchedule"]);
+        Route::post('get-student-attendance-records', [ParentController::class, "viewAttendance"]);
+        Route::post('get-notifications', [ParentController::class, "viewNotifications"]);
+        Route::post('schedule-meeting', [ParentController::class, "scheduleMeeting"]);
+       });    
 });
 
