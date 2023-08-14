@@ -2,6 +2,7 @@ import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
 import './style.css'
 import CourseCard from "../../../Components/Student/CourseCard";
+import CourseCardDetails from "../../../Components/Student/CourseDetails";
 
 function StudentBrowsePage() {
 	return (
@@ -11,10 +12,13 @@ function StudentBrowsePage() {
 				selected={"Browse"}
 			/>
 			{/* <div className="container">Browse</div> */}
-			<div className="flex row course-browse-container primary-bg">
+			{/* <div className="flex row course-browse-container primary-bg">
 				<CourseCard />
 				<CourseCard />
 				<CourseCard />
+			</div> */}
+			<div className=" course-details-popup flex center">
+				<CourseCardDetails />
 			</div>
 		</div>
 	);
