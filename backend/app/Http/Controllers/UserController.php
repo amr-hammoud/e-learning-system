@@ -15,7 +15,7 @@ class UserController extends Controller{
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255', 
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
             'user_type' => 'required|string|max:255',
         ]);
@@ -36,18 +36,17 @@ class UserController extends Controller{
             ], 422);
         }
 
-        $user_type_id = UserType::where('name', $user_type)->first();
-
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_type_id' => $user_type_id,
+            'user_type_id' => $user_type->id,
         ]);
 
         $token = Auth::login($user);
-        
+        $user->user_type = $user_type->name;
+
         return response()->json([
             'status' => 'success',
             'message' => 'User created successfully',
@@ -58,6 +57,92 @@ class UserController extends Controller{
             ]
         ]);
     }
-    
+
+    public function updateAccount(Request $request, $id){
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255', 
+            'email' => 'required|string|email|max:255',
+            'password' => 'required|string|min:6',
+        ]);
+
+        $user = User::where('email', $request->email)->where('id', '!=', $id)->first();
+        if ($user){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email already exists',
+            ], 422);
+        }
+
+        $user = User::find($id);
+        if (!$user){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        }
+
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name, 
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $token = Auth::login($user);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User updated successfully',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
+    public function deleteAccount($id){
+        $user = User::find($id);
+        if (!$user){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'User not found',
+            ], 404);
+        }
+
+        $user->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User deleted successfully',
+        ]);
+    }
+
+    public function getAllUsers(){
+        $users = User::with('userType:id,name')->get();
+
+        return response()->json([
+            'status' => 'success',
+            'users' => $users,
+        ]);
+    }
+
+    public function getUsersByType($type){
+        $user_type = UserType::where('name', ucfirst($type))->first();
+        if (!$user_type){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Invalid user type',
+            ], 422);
+        }
+
+        $users = User::where('user_type_id', $user_type->id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'users' => $users,
+        ]);
+    }
    
 }

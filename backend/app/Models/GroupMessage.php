@@ -9,7 +9,7 @@ class GroupMessage extends Model
 {
     use HasFactory;
     
-    public function userId(){
+    public function user(){
         return $this->belongsTo(User::class, 'sender_id');
     }
     

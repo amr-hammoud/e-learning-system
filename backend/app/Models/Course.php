@@ -9,13 +9,17 @@ class Course extends Model
 {
     use HasFactory;
 
-    public function users(){
+    public function courses(){
         return $this->belongsToMany(User::class, 'student_enrollments');
     }
-    
+    public function getUserenrollmentsCount()
+    {
+        return $this->courses->count();
+    }
     public function assessments(){
         return $this->hasMany(Assessment::class, 'course_id');
     }
+    
     public function teacher(){
         return $this->belongsTo(User::class, 'teacher_id');
     }
