@@ -31,6 +31,13 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
         Route::delete('delete/{id}', [CourseController::class, 'deleteCourse']);
     });
 
+    Route::prefix('config')->group(function () {
+        Route::get('all', [ConfigController::class, 'getConfigurations']);
+        Route::post('create', [ConfigController::class, 'createConfiguration']);
+        Route::post('update/{id}', [ConfigController::class, 'updateConfiguration']);
+        Route::delete('delete/{id}', [ConfigController::class, 'deleteConfiguration']);
+    });
+
 });
 
 Route::group(["middleware"=>"student","prefix"=>"student"], function(){
