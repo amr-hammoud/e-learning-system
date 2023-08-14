@@ -87,15 +87,10 @@ a {
     }
 }
 
-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
 
 :root {
     --color-primary: #407BFF;
+    --color-primary-dark: #2A5EE1;
     --color-background: #F6F9FD;
     --color-white: #FFFFFF;
     --color-text-primary: #181818;
