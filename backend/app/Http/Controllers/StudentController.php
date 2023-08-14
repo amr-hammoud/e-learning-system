@@ -19,23 +19,32 @@ use Auth;
 class StudentController extends Controller
 {
     //
+    
     public function getAvailableCourses(){
         $courses = Course::all();
         $availabe_courses_array =[];
+        $user = User::find(1);
+        $enrolled_courses = $user->courses;
+        
         foreach($courses as $course){
             $count =  $course->getUserenrollmentsCount();
             if($count < $course->max_enrollments){
-                $teacher = User::find($course->teacher_id);
-                $availabe_courses = [
-                    "id" => $course->id,
-                    "teacher" => $teacher->getFullNameAttribute(),
-                    "name" => $course->name,
-                    "subject" => $course->subject,
-                    "description" => $course->description,
-                    "start_date" => $course->start_date,
-                    "end_date" => $course->end_date,
-                ];
-                $availabe_courses_array [] = $availabe_courses;
+                foreach($enrolled_courses as $user_course){
+                    if($course->id != $user_course->id){
+                        $teacher = User::find($course->teacher_id);
+                        $availabe_courses = [
+                            "id" => $course->id,
+                            "teacher" => $teacher->getFullNameAttribute(),
+                            "name" => $course->name,
+                            "subject" => $course->subject,
+                            "description" => $course->description,
+                            "start_date" => $course->start_date,
+                            "end_date" => $course->end_date,
+                        ];
+                        $availabe_courses_array [] = $availabe_courses;
+                    }
+                }
+                
             }
 
         }
@@ -104,12 +113,12 @@ class StudentController extends Controller
             'content' => 'required|string',
         ]);
         $content = $request->content;
-        $sender_id = Auth::user();
+        $sender = Auth::user();
         $group_id = $request->group_id;
 
         $message = new GroupMessage();
         $message->content = $content;
-        $message->sender_id = $sender_id;
+        $message->sender_id = $sender->id;
         $message->group_id = $group_id;
 
     
@@ -119,9 +128,10 @@ class StudentController extends Controller
             "status" => "success",
         ]);
     }
+    //sent messages.
     public function getChatMessages(Request $request){
         $senderId = $request->sender_id;
-        $receiverId = Auth::user();
+        $receiver = Auth::user();
 
         $messages = Message::where('sender_id', $senderId)
                             ->with('sender:first_name,last_name,id')
@@ -134,13 +144,13 @@ class StudentController extends Controller
         $request->validate([
             'content' => 'required|string',
         ]);
-        $sender_id =Auth::user();
+        $sender =Auth::user();
         $receiver_id = $request->receiver_id;
         $content = $request->content;
 
         $message = new Message();
 
-        $message->sender_id = $sender_id;
+        $message->sender_id = $sender->id;
         $message->receiver_id = $receiver_id;
         $message->content= $content;
 
@@ -152,13 +162,14 @@ class StudentController extends Controller
 
         
     }
+    //no two meetings in the same time
     public function meetingSchedule(Request $request){
         $request->validate([
             'date_time' => 'required|date',
         ]);
         $course_id = $request->course_id;
         
-        $guest_id = 1;
+        $guest = Auth::user();
         $date_time = $request->date_time;
         $course = Course::find($course_id);
         $host_id = $course->teacher_id;
@@ -175,7 +186,7 @@ class StudentController extends Controller
         }
         $meeting = new Meeting();
         $meeting->host_id = $host_id;
-        $meeting->guest_id = $guest_id;
+        $meeting->guest_id = $guest->id;
         $meeting->meeting_link = $meeting_link;
         $meeting->date_time = $date_time;
 
@@ -186,14 +197,20 @@ class StudentController extends Controller
         ]);
     }
     public function getAllCourses(){
-        $user_id = Auth::user();;
-        $user = User::find($user_id);
-        $courses = $user->courses;
-        return $courses;
+        $user = Auth::user();
+        
+        if($user){
+            $courses = $user->courses;
+            return $courses;
+        }
+        return  response()->json([
+            "status" => "failed",
+            "message" => "Unauthorized"
+        ]);
+        
     }
     public function getAllMaterials(){
-        $user_id = Auth::user();;
-        $user = User::find($user_id);
+        $user = Auth::user();
         $courses = $user->courses;
         $materials = [];
         foreach($courses as $course){
