@@ -11,6 +11,8 @@ use App\Models\DiscussionGroup;
 use App\Models\GroupMessage;
 use App\Models\Message;
 
+
+
 use Carbon\Carbon;
 use Auth;
 class StudentController extends Controller
@@ -131,7 +133,7 @@ class StudentController extends Controller
         $request->validate([
             'content' => 'required|string',
         ]);
-        $sender_id =Auth::user();;
+        $sender_id =Auth::user();
         $receiver_id = $request->receiver_id;
         $content = $request->content;
 
@@ -148,5 +150,22 @@ class StudentController extends Controller
         ]);
 
         
+    }
+   
+    public function getAllCourses(){
+        $user_id = 1;
+        $user = User::find($user_id);
+        $courses = $user->courses;
+        return $courses;
+    }
+    public function getAllMaterials(){
+        $user_id = 1;
+        $user = User::find($user_id);
+        $courses = $user->courses;
+        $materials = [];
+        foreach($courses as $course){
+            $materials [] = $course->materials;
+        }
+        return $materials;
     }
 }
