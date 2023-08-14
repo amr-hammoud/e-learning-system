@@ -52,7 +52,7 @@ class ParentController extends Controller
 
     public function sendMessage(Request $request){
         $parent=Auth::user();
-        $teacher=User::where("first_name",$request->first_name)->where("last_name",$request->last_name)->first();
+        $teacher=User::find($request->id);
         if($teacher){
             $message=new Message;
             $message->sender_id=$parent->id;            
@@ -76,29 +76,35 @@ class ParentController extends Controller
 
     public function getMessages(Request $request){
         $parent=Auth::user();
-        $teacher=User::where("first_name",$request->first_name)->where("last_name",$request->last_name)->first();
-        $m_sent=[];
-        $m_received=[];
+        $teacher=User::find($request->id);
+        $messages=[];
+        $m_sent=$parent->sender()->orderBy('created_at')->get();
+        $m_received=$parent->receiver()->orderBy('created_at')->get();
         if($teacher){
             $message_sent=$parent->sender()->orderBy('created_at')->get();
             foreach ($message_sent as $m) {
-                $m_sent[]=[
+                $messages[]=[
+                    'type'=>'sender',
                     'message'=>$m->content,
                     'time'=>$m->created_at->addhours(3)->format('H:i:s')
                 ];
             }
             $message_received=$parent->receiver()->orderBy('created_at')->get();
             foreach ($message_received as $m) {
-                $m_received[]=[
+                $messages[]=[
+                    'type'=>'receiver',
                     'message'=>$m->content,
-                    'time'=>$m->created_at->addhours(3)->format('H:i:s')
+                    'time'=>$m->created_at->format('H:i:s')
                 ];               
             }
+            usort($messages, function ($a, $b) {
+                return strtotime($a['time']) - strtotime($b['time']);
+            });
             return response()->json([
                 'parent'=>$parent->first_name. " ".$parent->last_name,
                 'teacher'=>$teacher->first_name." ". $teacher->last_name,
-                'message sent'=>$m_sent,
-                'message received'=>$m_received]);               
+                'messages'=>$messages
+            ]);               
         } else{
         return response()->json(['status'=>"failed"]);
         };     
