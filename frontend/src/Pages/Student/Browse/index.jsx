@@ -3,8 +3,15 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import './style.css'
 import CourseCard from "../../../Components/Student/CourseCard";
 import CourseCardDetails from "../../../Components/Student/CourseDetails";
-
-function StudentBrowsePage() {
+const StudentBrowsePage=()=>{
+	const course={"title": "Introduction to Artificial Intelligence",
+				  "subject": "Computer Science",
+				  "description": "This course provides an overview of Artificial Intelligence, covering topics such as machine learning, natural language processing, and computer vision. Students will learn about the fundamental concepts and applications of AI through hands-on projects and case studies.",
+				  "ass":"15",
+				  "quizz":"5",
+				  "session":"20"
+				}
+	
 	return (
 		<div className="page flex ">
 			<Sidebar
@@ -13,12 +20,12 @@ function StudentBrowsePage() {
 			/>
 			{/* <div className="container">Browse</div> */}
 			{/* <div className="flex row course-browse-container primary-bg">
-				<CourseCard />
-				<CourseCard />
-				<CourseCard />
+				<CourseCard course={course}/>
+				<CourseCard course={course}/>
+				<CourseCard course={course}/>
 			</div> */}
 			<div className=" course-details-popup flex center">
-				<CourseCardDetails />
+				<CourseCardDetails course={course}/>
 			</div>
 		</div>
 	);

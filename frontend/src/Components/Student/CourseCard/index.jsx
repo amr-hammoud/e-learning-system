@@ -1,17 +1,17 @@
 import React from "react";
 import './style.css';
 
-function CourseCard() {
+const CourseCard=({course})=>{
 	return (
     <div class="flex column course-card white-bg rounded ">
         <div className="course-info flex column">
             <div class="course-title flex column roundedSmall">
                 <h2 className="white-color">
-                COURSE TITLE
+                {course.title}
                 </h2>
             </div>
             <div class="course-subject">
-                <p className="dark-gray">Course subject</p>
+                <p className="dark-gray">{course.subject}</p>
             </div>
     
         </div>
