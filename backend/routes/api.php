@@ -7,9 +7,6 @@ use App\Http\Controllers\StudentController;
 
 
 
-
-
-
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
     Route::post('create-account', [AuthController::class, 'createAccount']);
 });
@@ -32,9 +29,10 @@ Route::group(["middleware"=>"student","prefix"=>"student"], function(){
         Route::post('insertGroupMessage', [StudentController::class, 'insertGroupMessage']);
     });
 
-    Route::prefix('chatMessages')->group(function () {
+    Route::prefix('studySupport')->group(function () {
         Route::post('getPrivateMessages', [StudentController::class, 'getChatMessages']);
         Route::post('sendMessage', [StudentController::class, 'sendChatMessage']);
+        Route::post('meetingSchedule', [StudentController::class, 'meetingSchedule']);
     });
     Route::prefix('offlineLearning')->group(function () {
         Route::get('getAllCourses', [StudentController::class, 'getAllCourses']);

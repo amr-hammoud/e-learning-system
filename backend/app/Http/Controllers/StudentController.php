@@ -10,6 +10,7 @@ use App\Models\Assessment;
 use App\Models\DiscussionGroup;
 use App\Models\GroupMessage;
 use App\Models\Message;
+use App\Models\Meeting;
 
 
 
@@ -151,15 +152,47 @@ class StudentController extends Controller
 
         
     }
-   
+    public function meetingSchedule(Request $request){
+        $request->validate([
+            'date_time' => 'required|date',
+        ]);
+        $course_id = $request->course_id;
+        
+        $guest_id = 1;
+        $date_time = $request->date_time;
+        $course = Course::find($course_id);
+        $host_id = $course->teacher_id;
+        $meeting_link = $course->meeting_link;
+        
+        $sessions = $course->sessions;
+        foreach($sessions as $session){
+            if($session->date_time == $date_time){
+                return response()->json([
+                    "status" => "failed",
+                    "message" => "teacher have session in this time.",
+                ]);
+            }
+        }
+        $meeting = new Meeting();
+        $meeting->host_id = $host_id;
+        $meeting->guest_id = $guest_id;
+        $meeting->meeting_link = $meeting_link;
+        $meeting->date_time = $date_time;
+
+        $meeting->save();
+        
+        return response()->json([
+            "status" => "success",
+        ]);
+    }
     public function getAllCourses(){
-        $user_id = 1;
+        $user_id = Auth::user();;
         $user = User::find($user_id);
         $courses = $user->courses;
         return $courses;
     }
     public function getAllMaterials(){
-        $user_id = 1;
+        $user_id = Auth::user();;
         $user = User::find($user_id);
         $courses = $user->courses;
         $materials = [];
