@@ -128,16 +128,23 @@ class StudentController extends Controller
             "status" => "success",
         ]);
     }
-    //sent messages.
+    
     public function getChatMessages(Request $request){
-        $senderId = $request->sender_id;
-        $receiver = Auth::user();
+        $teacher = User::find($request->sender_id);
+        $student = User::find(1);
 
-        $messages = Message::where('sender_id', $senderId)
-                            ->with('sender:first_name,last_name,id')
-                            ->get();
+        $teacher_messages = $teacher->sender->where('receiver_id', $student->id);
 
+        $student_messages = $student->sender->where('receiver_id', $teacher->id);
+
+        $messages = [
+            "sent" => $student_messages,
+            "received" => $teacher_messages,
+        ];
+        
+        
         return $messages;
+        
         
     }
     public function sendChatMessage(Request $request){
