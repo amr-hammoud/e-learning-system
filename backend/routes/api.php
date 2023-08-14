@@ -45,6 +45,7 @@ Route::group(["middleware" => "teacher", "prefix" => "teacher"], function () {
     Route::group(['middleware' => 'teacherCourse', "prefix" => 'course'], function () {
         Route::get('/{id?}', [TeacherController::class, 'courses']);
         Route::post('createMaterial', [TeacherController::class, 'createMaterial']);
+        Route::post('getMaterial', [TeacherController::class, 'getMaterial']);
     });
 });
 

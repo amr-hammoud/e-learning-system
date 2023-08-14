@@ -9,7 +9,15 @@ class Material extends Model
 {
     use HasFactory;
 
-    public function courseId(){
+    protected $appends = ['url'];
+
+    public function courseId()
+    {
         return $this->belongsTo(Course::class, 'course_id');
+    }
+
+    public function getUrlAttribute()
+    {
+        return asset('storage/' . $this->attachment);
     }
 }

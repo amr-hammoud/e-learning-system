@@ -44,26 +44,20 @@ class TeacherController extends Controller
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string|max:255',
+            'attachment' => 'required|file',
             'course_id' => 'required|integer|exists:courses,id',
         ]);
 
-        if ($request->has('attachement')) {
-            $attachment = $request->file('attachement');
-
-            $attachment_name = time() . '_' . $attachment->getClientOriginalName();
+        if ($request->has('attachment')) {
+            $attachment = $request->file('attachment');
+            $attachment_name = time() . '_' . Str::replace(' ', '_', $attachment->getClientOriginalName());
             $attachment_path = 'material/' . $request->course_id . '/' . $attachment_name;
-
-            $directoryPath = public_path('material/' . $request->course_id);
-            if (!File::exists($directoryPath)) {
-                File::makeDirectory($directoryPath, 0755, true);
-            }
-
-            file_put_contents(public_path($attachment_path), $attachment_name);
+            $attachment->storeAs($attachment_path, $attachment_name, 'public');
 
             $material = new Material();
             $material->title = $request->title;
             $material->description = $request->description;
-            $material->attachment = $attachment_name;
+            $material->attachment = $material->attachment = $attachment_path . '/' . $attachment_name;;
             $material->course_id = $request->course_id;
             $material->save();
 
@@ -75,5 +69,26 @@ class TeacherController extends Controller
         else{
 
         }
+    }
+
+    public function getMaterial(Request $request)
+    {
+
+        $request->validate([
+            'id' => 'numeric|exists:materials,id'
+        ]);
+
+        if ($request->id) {
+            $material = Material::find($request->id)->where("course_id", $request->course_id)->first();
+
+        } else {
+            $material = Material::orderBy('created_at', 'desc')->get();
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $material,
+        ], 200);
+        
     }
 }
