@@ -22,3 +22,9 @@
 .back-2{
     background-color: var(--text-primary);
 }
+.back-3{
+    background-color: var(--text-secondary);
+}
+.back-4{
+    background-color: var(--color-secondary);
+}

@@ -3,14 +3,21 @@ import './style.css'
 import Sidebar from "../../../Components/Common/Sidebar";
 import ChildCard from "./components/ChildCard";
 const ParentChildrenPage = () => {
-  
+  const children = ["Youssef","Houssein"];
+  const colors = [1,2,3,4];
   return (
     <div className="page flex">
-			<Sidebar items = {["Children","Messages", "Conferences","Notifications"]} selected={"Children"} />
+			<Sidebar items = {["Children","Messages", "Conferences"]} selected={"Children"} />
       
-			
-      <ChildCard backgroundColor={1}/>
-      <ChildCard backgroundColor={2}/>
+			{children?.map((child) => {
+					return (
+						<ChildCard 
+              backgroundColor={Math.floor(Math.random() * (4 - 1 + 1)) + 1}
+              text = {child}
+            />
+					);
+				})}
+      
 		</div>
   )
 }

@@ -4,7 +4,7 @@ import Sidebar from "../../../Components/Common/Sidebar";
 const ParentConferencesPage = () => {
   return (
     <div className="page flex">
-			<Sidebar items = {["Children","Messages", "Conferences","Notifications"]} selected={"Conferences"} />
+			<Sidebar items = {["Children","Messages", "Conferences"]} selected={"Conferences"} />
 			<div className="container">ParentConferencesPage</div>
 		</div>
   )

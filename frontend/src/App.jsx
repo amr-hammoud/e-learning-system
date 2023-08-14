@@ -13,7 +13,8 @@ import TeacherConferencesPage from "./Pages/Teacher/Conferences";
 import ParentMessagesPage from "./Pages/Parent/Messages";
 import ParentConferencesPage from "./Pages/Parent/Conferences";
 import ParentChildrenPage from "./Pages/Parent/Children";
-import ParentNotificationsPage from "./Pages/Parent/Notifications";
+import ChildrenProgress from "./Pages/Parent/Children/components/ChildrenProgress";
+
 
 function App() {
 	return (
@@ -28,7 +29,8 @@ function App() {
 				<Route path="/parent/children" element={<ParentChildrenPage />} />
 				<Route path="/parent/messages" element={<ParentMessagesPage />} />
 				<Route path="/parent/conferences" element={<ParentConferencesPage />} />
-				<Route path="/parent/notifications" element={<ParentNotificationsPage />} />
+				<Route path="/parent/ChildrenProgress" element={<ChildrenProgress />} />
+				 
 				<Route path="*" element={<E404 />} />
 			</Routes>
 		</BrowserRouter>
