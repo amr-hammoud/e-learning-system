@@ -3,9 +3,10 @@ import './style.css'
 import Sidebar from '../../../Components/Common/Sidebar'
 
 function ParentLandingPage() {
+  
   return (
     <div className="page flex">
-			<Sidebar />
+			<Sidebar items = {["Children","Messages", "Conferences"]} selected={"Children"} />
 			<div className="container">ParentLandingPage</div>
 		</div>
   )
