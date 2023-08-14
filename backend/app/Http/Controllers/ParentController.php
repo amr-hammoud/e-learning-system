@@ -132,7 +132,6 @@ class ParentController extends Controller
         foreach ($courses as $courseName => $courseId) {
             $course = Course::find($courseId);
             $sessions = Session::where('course_id', $course->id)->get();
-
             foreach ($sessions as $session) {
                 $nb_sessions_held=Session::where("course_id",$course->id)->count();
                 $attendances = Attendance::where("user_id", $student_id)->where("session_id",$session->id)->where("attended",1)->count();
@@ -175,8 +174,9 @@ class ParentController extends Controller
         'status'=>'Marked as read successfully', 
         'notifications'=>$courseNameWithNotification]);
     }
+
     public function scheduleMeeting(Request $request){
-        $course=Course::where('name',$request->name)->first();
+        $course=Course::where('id',$request->id)->first();
         $link=$course->meeting_link;
         $teacher_id=$course->teacher_id;
         $teacher=User::find($teacher_id);
@@ -188,8 +188,9 @@ class ParentController extends Controller
         $meeting->save();
         $meeting->host_name=Auth::user()->first_name;
         $meeting->guest_name=$teacher->first_name . " ". $teacher->last_name;
-        return response()->json(['status'=>'meeting scheduled successfully',
-                                    'meeting details'=>$meeting                   
+        return response()->json([
+            'status'=>'meeting scheduled successfully',
+            'meeting details'=>$meeting                   
         ]);
     }
 }
