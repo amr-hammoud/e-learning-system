@@ -25,7 +25,12 @@ class TeacherCourseMiddleware
                 if ($courses) {
                     return $next($request);
                 }
-            }else{
+            } else if ($id = $request->course_id) {
+                $courses = Course::all()->where("id", $id)->where("teacher_id", $user->id)->first();
+                if ($courses) {
+                    return $next($request);
+                }
+            } else {
                 return response()->json([
                     'status' => 'error',
                     'message' => 'Course ID Required',
