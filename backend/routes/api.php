@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\AnalyticsController;
 
 
 Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
@@ -17,6 +18,10 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function(){
         Route::post('create', [UserController::class, 'createAccount']);
         Route::post('update/{id}', [UserController::class, 'updateAccount']);
         Route::delete('delete/{id}', [UserController::class, 'deleteAccount']);
+    });
+
+    Route::prefix('analytics')->group(function () {
+        Route::get('/courses', [AnalyticsController::class, 'getCoursesAnalytics']);
     });
 
     Route::prefix('course')->group(function () {
