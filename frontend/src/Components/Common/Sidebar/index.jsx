@@ -6,8 +6,8 @@ import SidebarItem from "../../Base/SidebarItem";
 function Sidebar({ items, selected = items[0] }) {
 	const [selectedTab, setSelectedTab] = useState(selected);
 
-	const selectHandler = (value) => {
-		setSelectedTab(value);
+	const selectHandler = (label) => {
+		setSelectedTab(label);
 	};
 
 	return (
@@ -21,8 +21,7 @@ function Sidebar({ items, selected = items[0] }) {
 						<SidebarItem
 							label={item}
 							selected={selectedTab === item}
-							value={item}
-							onSelected={(value) => selectHandler(value)}
+							onSelected={(label) => selectHandler(label)}
 						/>
 					);
 				})}

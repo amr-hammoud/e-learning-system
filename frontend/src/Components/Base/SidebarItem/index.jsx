@@ -6,12 +6,12 @@ import { BsPersonVideo } from "react-icons/bs";
 import { LuMessagesSquare } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function SidebarItem({ label, selected, value, onSelected }) {
+function SidebarItem({ label, selected, onSelected }) {
 	const navigation = useNavigate();
 	const location = useLocation();
 	const base_location = location.pathname.split("/")[1];
 	const clickHandler = () => {
-		onSelected(value);
+		onSelected(label);
 		navigation(`/${base_location}/${label.toLowerCase()}`);
 	};
 
