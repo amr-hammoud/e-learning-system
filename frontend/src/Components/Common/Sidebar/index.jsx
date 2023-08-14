@@ -13,12 +13,13 @@ function Sidebar({ items, selected = items[0] }) {
 	return (
 		<div className="sidebar">
 			<div className="logo">
-				<img src={logo} alt="" />
+				<img src={logo} alt=" logo " />
 			</div>
 			<div className="items">
-				{items?.map((item) => {
+				{items?.map((item, index) => {
 					return (
 						<SidebarItem
+							key={index}
 							label={item}
 							selected={selectedTab === item}
 							onSelected={(label) => selectHandler(label)}
