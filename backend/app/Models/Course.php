@@ -9,37 +9,55 @@ class Course extends Model
 {
     use HasFactory;
 
-    public function courses(){
+    protected $fillable = [
+        'name',
+        'subject',
+        'description',
+        'max_enrollments',
+        'total_sessions',
+        'total_assignments',
+        'total_quizzes',
+        'start_date',
+        'end_date',
+        'meeting_link',
+        'teacher_id'
+    ];
+
+    public function courses()
+    {
         return $this->belongsToMany(User::class, 'student_enrollments');
     }
     public function getUserenrollmentsCount()
     {
         return $this->courses->count();
     }
-    public function assessments(){
+    public function assessments()
+    {
         return $this->hasMany(Assessment::class, 'course_id');
     }
-    
-    public function teacher(){
+
+    public function teacher()
+    {
         return $this->belongsTo(User::class, 'teacher_id');
     }
 
-    public function notifictions(){
+    public function notifictions()
+    {
         return $this->hasMany(Notification::class, 'course_id');
     }
 
-    public function materials(){
+    public function materials()
+    {
         return $this->hasMany(Material::class, 'course_id');
     }
 
-    public function sessions(){
+    public function sessions()
+    {
         return $this->hasMany(Session::class, 'course_id');
     }
 
-    public function discussionGroup(){
+    public function discussionGroup()
+    {
         return $this->hasOne(DiscussionGroup::class, 'course_id');
     }
-
-
 }
-
