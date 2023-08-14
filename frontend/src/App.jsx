@@ -12,7 +12,9 @@ import TeacherCoursesPage from "./Pages/Teacher/Courses";
 import TeacherMessagesPage from "./Pages/Teacher/Messages";
 import TeacherConferencesPage from "./Pages/Teacher/Conferences";
 import StudentBrowsePage from "./Pages/Student/Browse";
-
+import StudentCoursesPage from "./Pages/Student/MyCourses";
+import StudentMessagesPage from "./Pages/Student/Messages";
+import StudentConferencesPage from "./Pages/Student/Conferences";
 function App() {
 	return (
 		<BrowserRouter>
@@ -26,6 +28,9 @@ function App() {
 				<Route path="/parent" element={<ParentLandingPage />} />
 
 				<Route path="/student/browse" element={<StudentBrowsePage />} />
+				<Route path="/student/my courses" element={<StudentCoursesPage />} />
+				<Route path="/student/messages" element={<StudentMessagesPage />} />
+				<Route path="/student/conferences" element={<StudentConferencesPage />} />
 
 				<Route path="*" element={<E404 />} />
 			</Routes>
