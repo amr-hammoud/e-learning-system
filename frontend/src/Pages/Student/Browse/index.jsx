@@ -4,7 +4,7 @@ import './style.css'
 import CourseCard from "../../../Components/Student/CourseCard";
 import CourseCardDetails from "../../../Components/Student/CourseDetails";
 const StudentBrowsePage=()=>{
-	const course={"title": "Introduction to Artificial Intelligence",
+	const course={"title": "Artificial Intelligence",
 				  "subject": "Computer Science",
 				  "description": "This course provides an overview of Artificial Intelligence, covering topics such as machine learning, natural language processing, and computer vision. Students will learn about the fundamental concepts and applications of AI through hands-on projects and case studies.",
 				  "ass":"15",
