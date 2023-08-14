@@ -1,9 +1,18 @@
 import React from 'react'
 import './style.css'
-const Children = () => {
+import Sidebar from "../../../Components/Common/Sidebar";
+import ChildCard from "./components/ChildCard";
+const ParentChildrenPage = () => {
+  
   return (
-    <div>Children</div>
+    <div className="page flex">
+			<Sidebar items = {["Children","Messages", "Conferences","Notifications"]} selected={"Children"} />
+      
+			
+      <ChildCard backgroundColor={1}/>
+      <ChildCard backgroundColor={2}/>
+		</div>
   )
 }
 
-export default Children
+export default ParentChildrenPage

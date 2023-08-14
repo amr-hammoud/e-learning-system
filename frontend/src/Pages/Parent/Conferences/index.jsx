@@ -1,9 +1,13 @@
 import React from 'react'
 import './style.css'
-const Conferences = () => {
+import Sidebar from "../../../Components/Common/Sidebar";
+const ParentConferencesPage = () => {
   return (
-    <div>Conferences</div>
+    <div className="page flex">
+			<Sidebar items = {["Children","Messages", "Conferences","Notifications"]} selected={"Conferences"} />
+			<div className="container">ParentConferencesPage</div>
+		</div>
   )
 }
 
-export default Conferences
+export default ParentConferencesPage
