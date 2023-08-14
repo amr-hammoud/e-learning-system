@@ -1,8 +1,8 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
 import CourseEnrolledCard from "../../../Components/Student/EnrolledCourseCard";
-import CourseCard from "../../../Components/Student/CourseCard";
-
+import "./style.css";
+import StudentStream from "../Stream";
 function StudentCoursesPage() {
 	const course={"title": "Artificial Intelligence"};
 	return (
@@ -11,11 +11,13 @@ function StudentCoursesPage() {
 				items={["My Courses", "Browse", "Messages", "Conferences"]}
 				selected={"My Courses"}
 			/>
-			{/* <div className="container"> My Courses</div> */}
-			<div className="flex row course-browse-container primary-bg">
+			{/* <div className="flex row course-browse-container primary-bg">
 				<CourseEnrolledCard course={course}/>
 			    <CourseEnrolledCard  course={course}/>
 				<CourseEnrolledCard  course={course}/>
+			</div> */}
+			<div className="flex column course-browse-container primary-bg">
+			<StudentStream course={course}/>
 			</div>
 		</div>
 	);
