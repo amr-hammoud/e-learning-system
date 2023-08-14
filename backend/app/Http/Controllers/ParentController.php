@@ -18,7 +18,6 @@ use App\Models\Meeting;
 class ParentController extends Controller
 {
     public function getStudentProgress(){
-        // $parent_name,$student_name,$course_name
         $parent=Auth::user();
         $student=$parent->children->first();
         $student_id=$student->id;
