@@ -25,12 +25,6 @@ class TeacherController extends Controller
         $user = Auth::user();
         if ($id) {
             $courses = Course::all()->where("id", $id)->where("teacher_id", $user->id)->first();
-            if (!$courses) {
-                return response()->json([
-                    'status' => 'error',
-                    'message' => 'Course not found for this teacher'
-                ], 404);
-            }
         } else {
             $courses = Course::where("teacher_id", $user->id)->get();
         }
