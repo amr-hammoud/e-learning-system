@@ -22,7 +22,7 @@ const Sidebar = ({ items, selected = items[0] }) => {
 			const role = localStorage.getItem("role");
 			const base_location = location.pathname.split("/")[1];
 
-			if (role.toLowerCase() !== base_location.toLowerCase()) {
+			if (role?.toLowerCase() !== base_location?.toLowerCase()) {
 				navigate("/e401");
 			}
 		}

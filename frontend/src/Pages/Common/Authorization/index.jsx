@@ -10,7 +10,7 @@ function AuthorizationPage({ setUser, user }) {
 
 	useEffect(() => {
 		if (localStorage.getItem("access_token")) {
-			const role = localStorage.getItem("role").toLowerCase();
+			const role = localStorage.getItem("role")?.toLowerCase();
       console.log(role);
 			if (role === "admin") {
         navigate("/admin/dashboard")
