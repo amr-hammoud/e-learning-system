@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Material;
+use App\Models\Assessment;
 use App\Models\Meeting;
 use App\Models\User;
 
@@ -136,6 +137,8 @@ class TeacherController extends Controller
         $course = Course::find($course_id)->first();
         $course->material = Material::where('course_id', $course_id)->get();
         $course->meetings = Meeting::where('host_id', $course->teacher_id)->get();
+        $course->assessments = Assessment::where('course_id', $course_id)->get();
+
         $course->students = $course->students()->with('parents')->get();
         
         return response()->json([
