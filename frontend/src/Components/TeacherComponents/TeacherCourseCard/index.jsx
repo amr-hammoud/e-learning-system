@@ -1,7 +1,7 @@
 import "./style.css"
 import CardImage from "../../../assets/course-card.jpg";
 
-const CourseCard = ({ course }) => {
+const TeacherCourseCard = ({ course }) => {
     const { id, name, subject, description } = course;
     
     return (
@@ -16,4 +16,4 @@ const CourseCard = ({ course }) => {
     )
 };
 
-export default CourseCard;
+export default TeacherCourseCard;

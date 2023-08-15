@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
-import CourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
+import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
@@ -33,7 +33,7 @@ function TeacherCoursesPage() {
 			/>
 			<div className="container courses-container">
 			{courses?.map((course) => (
-				<CourseCard key={course.id} course={course} />
+				<TeacherCourseCard key={course.id} course={course} />
 			))}
 			</div>
 		</div>
