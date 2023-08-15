@@ -1,10 +1,9 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
-import CourseCard from "../../../Components/Common/CourseCard";
+import CourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
-import { useFetcher } from "react-router-dom";
 
 function TeacherCoursesPage() {
 	
