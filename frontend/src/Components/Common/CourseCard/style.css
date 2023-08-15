@@ -11,6 +11,7 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+    position: relative;
 }
 
 .course-card:hover {
@@ -18,6 +19,17 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
 
+.course-card__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
 .course-card__img > img {
     border-radius: 10px;
+}
+
+.course-card__info {
+    margin-top: 192px;
 }
