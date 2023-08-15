@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Models;
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,6 +11,8 @@ use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+
+    protected $appends = ['fullname'];
 
     /**
      * The attributes that are mass assignable.
@@ -38,73 +42,88 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<string, string>
      */
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function courses(){
+    public function courses()
+    {
         return $this->belongsToMany(Course::class, 'student_enrollments');
     }
-    public function userType(){
-        return $this->belongsTo(UserType::class, 'user_type_id'); 
+    public function userType()
+    {
+        return $this->belongsTo(UserType::class, 'user_type_id');
     }
     public function getFullNameAttribute()
     {
         return $this->attributes['first_name'] . ' ' . $this->attributes['last_name'];
     }
-    public function sender(){
-        return $this->hasMany(Message::class, 'sender_id'); 
+    public function sender()
+    {
+        return $this->hasMany(Message::class, 'sender_id');
     }
 
-    public function receiver(){
-        return $this->hasMany(Message::class, 'receiver_id'); 
+    public function receiver()
+    {
+        return $this->hasMany(Message::class, 'receiver_id');
     }
 
-    public function feedbacks(){
+    public function feedbacks()
+    {
         return $this->hasMany(FeedBack::class, 'user_id');
     }
 
-    public function grades(){
+    public function grades()
+    {
         return $this->hasMany(Grade::class, 'user_id');
     }
 
-    public function submission(){
+    public function submission()
+    {
         return $this->hasMany(Submission::class, 'user_id');
     }
 
-    public function attendance(){
+    public function attendance()
+    {
         return $this->hasMany(Attendance::class, 'user_id');
     }
 
-    public function teacher(){
+    public function teacher()
+    {
         return $this->hasMany(Course::class, 'teacher_id');
     }
 
-    public function groupMessages(){
+    public function groupMessages()
+    {
         return $this->hasMany(GroupMessage::class, 'sender_id');
     }
 
-    public function parents(){
-    return $this->belongsToMany(User::class, 'parents', 'student_id', 'parent_id')->withPivot('student_id');
+    public function parents()
+    {
+        return $this->belongsToMany(User::class, 'parents', 'student_id', 'parent_id')->withPivot('student_id');
     }
 
-    public function children(){
+    public function children()
+    {
         return $this->belongsToMany(User::class, 'parents', 'parent_id', 'student_id');
     }
 
-    public function host(){
-        return $this->hasMany(Meeting::class, 'host_id'); 
+    public function host()
+    {
+        return $this->hasMany(Meeting::class, 'host_id');
     }
 
-    public function guest(){
-        return $this->hasMany(Meeting::class, 'guest_id'); 
+    public function guest()
+    {
+        return $this->hasMany(Meeting::class, 'guest_id');
     }
 
-    public function notifications(){
+    public function notifications()
+    {
         return $this->hasMany(NotificationStatus::class, 'parent_id');
     }
-     /**
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
@@ -123,5 +142,4 @@ class User extends Authenticatable implements JWTSubject
     {
         return [];
     }
-
 }

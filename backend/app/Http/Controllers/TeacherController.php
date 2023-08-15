@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Material;
+use App\Models\Meeting;
 
 class TeacherController extends Controller
 {
@@ -63,9 +64,7 @@ class TeacherController extends Controller
                 'status' => 'success',
                 'data' => $material,
             ], 200);
-        }
-        else{
-
+        } else {
         }
     }
 
@@ -78,7 +77,6 @@ class TeacherController extends Controller
 
         if ($request->id) {
             $material = Material::find($request->id)->where("course_id", $request->course_id)->first();
-
         } else {
             $material = Material::orderBy('created_at', 'desc')->get();
         }
@@ -87,6 +85,25 @@ class TeacherController extends Controller
             'status' => 'success',
             'data' => $material,
         ], 200);
-        
+    }
+
+    public function getConferences()
+    {
+        $user = Auth::user();
+
+        $meetings = Meeting::where('host_id', $user->id)->get();
+
+        $formattedMeetings = $meetings->map(function ($meeting) {
+            return [
+                'name' => $meeting->guestname,
+                'date' => $meeting->formatteddatetime,
+                'link' => $meeting->meeting_link,
+            ];
+        });
+
+        return response()->json([
+            'status' => 'success',
+            'data' => $formattedMeetings,
+        ], 200);
     }
 }
