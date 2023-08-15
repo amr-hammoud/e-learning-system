@@ -5,6 +5,8 @@ import Classwork from "../../../Components/Student/Classwork";
 import Session from "../../../Components/Student/Session";
 import Notification from "../../../Components/Student/Notification";
 import Progress from "../../../Components/Student/Progress";
+import Message from "../../../Components/Student/Message";
+import MessageContainer from "../../../Components/Student/MessageContainer";
 const StudentStream=({course})=>{
     const ass={"title": "AI Assignment",
                 "description": "Implement a sentiment analysis model using a neural network architecture. The model should be trained on a dataset of movie reviews and be able to classify the sentiment of a given review as positive or negative.",
@@ -53,12 +55,16 @@ const StudentStream=({course})=>{
             <Session session={session}/> */}
 
             {/* <Notification notification={notification} /> */}
-            <div className=" progress-data flex row">
-                <Progress percentage={percentage} />
-                <Progress percentage={percentage} />
-                <Progress percentage={percentage} />
-            </div>
             
+            {/* <div className=" progress-data flex row">
+                <Progress percentage={percentage} />
+                <Progress percentage={percentage} />
+                <Progress percentage={percentage} />
+            </div> */}
+
+
+            {/* <Message /> */}
+            <MessageContainer />
         </div>
     </div>
     );

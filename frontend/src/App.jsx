@@ -15,6 +15,7 @@ import StudentBrowsePage from "./Pages/Student/Browse";
 import StudentCoursesPage from "./Pages/Student/MyCourses";
 import StudentMessagesPage from "./Pages/Student/Messages";
 import StudentConferencesPage from "./Pages/Student/Conferences";
+import MessageComponent from "./Pages/Student/MessageTeacher";
 function App() {
 	return (
 		<BrowserRouter>
@@ -31,7 +32,7 @@ function App() {
 				<Route path="/student/my courses" element={<StudentCoursesPage />} />
 				<Route path="/student/messages" element={<StudentMessagesPage />} />
 				<Route path="/student/conferences" element={<StudentConferencesPage />} />
-
+				<Route path="student/my courses/message/teacher" element={<MessageComponent/>}/>
 				<Route path="*" element={<E404 />} />
 			</Routes>
 		</BrowserRouter>
