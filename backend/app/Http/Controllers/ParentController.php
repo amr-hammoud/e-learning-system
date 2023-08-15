@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Assessment;
 use App\Models\Grade;
 use App\Models\Message;
 use App\Models\Course;
@@ -16,39 +17,42 @@ use App\Models\Meeting;
 
 class ParentController extends Controller
 {
-    public function getStudentProgress($parent_name,$student_name,$course_name){
-        $auth_parent=Auth::user();
-        $full_name= explode(" ", $student_name);
-        $first_name=$full_name[0];
-        $last_name=$full_name[1];
-        $student= User::where("first_name",$first_name)
-                      ->where("last_name",$last_name)
-                      ->first();
-        $parent=User::where("first_name",$parent_name)
-                    ->first();
-        if($auth_parent->id===$parent->id){
-            $parent_id=$student->parents->where("id",$parent->id)->first()->id;
-            if($parent->id===$parent_id){
-                $total_grades =$student->grades()->get()->pluck('grade');
-                    $total_submissions=$student->submission()->get()->count();
-                    return response()->json([
-                        'parent'=>$parent_name,
-                        'student_fname:'=>$first_name,
-                        'student_lname:'=>$last_name,
-                        'course:'=>$course_name,
-                        'total grades'=>$total_grades,
-                        'total-submissions'=>$total_submissions
-                    ]);
-            }    
-        }       
-        else{
-            return response()->json([
-                'result'=>"An error has occured"]);}
-    }
+    public function getStudentProgress(){
+        $parent=Auth::user();
+        $student=$parent->children->first();
+        $student_id=$student->id;
+        $courses= $student->courses->pluck('id','name');
+        $courseNameWithProgress=[];
+       
+        $course_info=[];
+        foreach ($courses as $courseName => $courseId) {
+            $course = Course::find($courseId);
+            $assessments = Assessment::where('course_id', $course->id)->get();
+            $grades=[];
+            foreach ($assessments as $ass) {
+                $grade=Grade::where("assessment_id",$ass->id)->where("user_id",$student_id)->first();
+                $grades[]=[
+                    'assessment'=>$ass->title,
+                    'grade'=> $grade->grade,                   
+                ];
+             }
+            $course_info[] = [
+                'course-name' => $course->name,
+                'number-assignments-given' => $course->assessments->count(),
+                'completed-assignments'=>count($grades),
+                'grades' => $grades
+            ];
+        }
+        return response()->json([
+            'parent'=>$parent->first_name." " .$parent->last_name,
+            'student'=>$student->first_name." ". $student->last_name,
+            'info'=>$course_info
+        ]);
+    }    
 
     public function sendMessage(Request $request){
         $parent=Auth::user();
-        $teacher=User::where("first_name",$request->first_name)->where("last_name",$request->last_name)->first();
+        $teacher=User::find($request->id);
         if($teacher){
             $message=new Message;
             $message->sender_id=$parent->id;            
@@ -61,7 +65,7 @@ class ParentController extends Controller
                 'teacher'=>$teacher->first_name." ". $teacher->last_name,
                 'message sent'=>$message->content,
                 'date-sent-at'=>$message->created_at->format('d.m.Y'),
-                'time-sent-at'=>$message->created_at->format('H:i:s')                
+                'time-sent-at'=>$message->created_at->addhours(3)->format('H:i:s')                
             ]);
         }
         else{
@@ -72,15 +76,35 @@ class ParentController extends Controller
 
     public function getMessages(Request $request){
         $parent=Auth::user();
-        $teacher=User::where("first_name",$request->first_name)->where("last_name",$request->last_name)->first();
+        $teacher=User::find($request->id);
+        $messages=[];
+        $m_sent=$parent->sender()->orderBy('created_at')->get();
+        $m_received=$parent->receiver()->orderBy('created_at')->get();
         if($teacher){
-            $message_sent=$parent->sender()->orderBy('created_at')->pluck('content');
-            $message_received=$parent->receiver()->orderBy('created_at','asc')->pluck('content');
+            $message_sent=$parent->sender()->orderBy('created_at')->get();
+            foreach ($message_sent as $m) {
+                $messages[]=[
+                    'type'=>'sender',
+                    'message'=>$m->content,
+                    'time'=>$m->created_at->addhours(3)->format('H:i:s')
+                ];
+            }
+            $message_received=$parent->receiver()->orderBy('created_at')->get();
+            foreach ($message_received as $m) {
+                $messages[]=[
+                    'type'=>'receiver',
+                    'message'=>$m->content,
+                    'time'=>$m->created_at->format('H:i:s')
+                ];               
+            }
+            usort($messages, function ($a, $b) {
+                return strtotime($a['time']) - strtotime($b['time']);
+            });
             return response()->json([
                 'parent'=>$parent->first_name. " ".$parent->last_name,
                 'teacher'=>$teacher->first_name." ". $teacher->last_name,
-                'message sent'=>$message_sent,
-                'message received'=>$message_received]);               
+                'messages'=>$messages
+            ]);               
         } else{
         return response()->json(['status'=>"failed"]);
         };     
@@ -113,7 +137,6 @@ class ParentController extends Controller
         foreach ($courses as $courseName => $courseId) {
             $course = Course::find($courseId);
             $sessions = Session::where('course_id', $course->id)->get();
-
             foreach ($sessions as $session) {
                 $nb_sessions_held=Session::where("course_id",$course->id)->count();
                 $attendances = Attendance::where("user_id", $student_id)->where("session_id",$session->id)->where("attended",1)->count();
@@ -156,8 +179,9 @@ class ParentController extends Controller
         'status'=>'Marked as read successfully', 
         'notifications'=>$courseNameWithNotification]);
     }
+
     public function scheduleMeeting(Request $request){
-        $course=Course::where('name',$request->name)->first();
+        $course=Course::where('id',$request->id)->first();
         $link=$course->meeting_link;
         $teacher_id=$course->teacher_id;
         $teacher=User::find($teacher_id);
@@ -169,8 +193,9 @@ class ParentController extends Controller
         $meeting->save();
         $meeting->host_name=Auth::user()->first_name;
         $meeting->guest_name=$teacher->first_name . " ". $teacher->last_name;
-        return response()->json(['status'=>'meeting scheduled successfully',
-                                    'meeting details'=>$meeting                   
+        return response()->json([
+            'status'=>'meeting scheduled successfully',
+            'meeting details'=>$meeting                   
         ]);
     }
 }

@@ -3,7 +3,7 @@ import "./style.css";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 
-function Sidebar({ items, selected = items[0] }) {
+const Sidebar = ({ items, selected = items[0] }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
 
 	const selectHandler = (label) => {
@@ -13,12 +13,13 @@ function Sidebar({ items, selected = items[0] }) {
 	return (
 		<div className="sidebar">
 			<div className="logo">
-				<img src={logo} alt="" />
+				<img src={logo} alt=" logo " />
 			</div>
 			<div className="items">
-				{items?.map((item) => {
+				{items?.map((item, index) => {
 					return (
 						<SidebarItem
+							key={index}
 							label={item}
 							selected={selectedTab === item}
 							onSelected={(label) => selectHandler(label)}

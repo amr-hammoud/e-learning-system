@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Sidebar from '../../../../../Components/Common/Sidebar'
+import Navbar from '../../../../../Components/Common/Navbar'
 import "./style.css"
 import ChildCard from '../ChildCard'
 import { useLocation, useNavigate } from "react-router-dom";
 const ChildrenProgress = () => {
+  const [activeTab, setActiveTab] = useState("Stream");
+
+  useEffect(() => {
+      console.log(activeTab);
+      //Add if else to render your desired component
+      
+  
+  }, [activeTab]);
   const navigation = useNavigate();
 	const location = useLocation();
   const base_location = location.pathname.split("/")[1];
@@ -13,10 +22,9 @@ const ChildrenProgress = () => {
     <div className='flex'>
         <Sidebar items = {["Children","Messages", "Conferences"]} selected={"Children"} />
         <div className='parent-course-card flex column'>
-          <div className="Navbar">
-            <button className="navbar-button">Progress</button>
-            <button className="navbar-button" onClick={notificationCLicked}>Notifications</button>
-          </div>
+        <Navbar items={["Progress", "Notifications"]}
+            selected={"Progress"}
+            onTabChanged={(tab) => {setActiveTab(tab)}}/>
           <div className="flex">
           {courses?.map((course) => {
 					return (
