@@ -1,0 +1,28 @@
+.meeting-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--color-white);
+    width: 100%;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: .9rem;
+    border-radius: .5rem;
+}
+
+.meeting-item:hover {
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+}
+
+.meeting-item__link > a {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: .5rem;
+    border-radius: .5rem;
+}
+
+.meeting-item__link > a:hover {
+    background-color: var(--color-primary-dark);
+}

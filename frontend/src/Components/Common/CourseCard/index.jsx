@@ -6,8 +6,8 @@ const CourseCard = ({ course }) => {
     
     return (
         <div className="course-card" id={id}>
-            <div className="course-card-img"><img src={CardImage} alt="course card" /></div>
-            <div className="course-card-info">
+            <div className="course-card__img"><img src={CardImage} alt="course card" /></div>
+            <div className="course-card__info">
                 <h3>{name}</h3>
                 <h4>{subject}</h4>
                 <p>{description}</p>
