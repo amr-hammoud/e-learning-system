@@ -10,11 +10,12 @@ import { LuUsers } from "react-icons/lu";
 import { LuSettings } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const SidebarItem = ({ label, selected, onSelected }) => {
+const SidebarItem = ({ label, selected, onSelected, setActiveCourse }) => {
 	const navigation = useNavigate();
 	const location = useLocation();
 	const base_location = location.pathname.split("/")[1];
 	const clickHandler = () => {
+		setActiveCourse(null);
 		onSelected(label);
 		navigation(`/${base_location}/${label?.toLowerCase()}`);
 	};

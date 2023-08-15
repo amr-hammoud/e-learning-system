@@ -5,7 +5,7 @@ import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Sidebar = ({ items, selected = items[0] }) => {
+const Sidebar = ({ items, selected = items[0], setActiveCourse }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
 	const location = useLocation();
 
@@ -52,6 +52,7 @@ const Sidebar = ({ items, selected = items[0] }) => {
 							label={item}
 							selected={selectedTab === item}
 							onSelected={(label) => selectHandler(label)}
+							setActiveCourse={setActiveCourse}
 						/>
 					);
 				})}
@@ -62,7 +63,7 @@ const Sidebar = ({ items, selected = items[0] }) => {
 				ref={logoutButton}
 			>
 				<BiLogOut />
-				Logout
+				Log out
 			</div>
 		</div>
 	);

@@ -3,19 +3,21 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
+import Navbar from "../../../Components/Common/Navbar";
 import "./style.css"
 
-function TeacherCoursesPage() {
-	
+const TeacherCoursesPage = () => {
+	const [activeTab, setActiveTab] = useState("Stream");
 	const [courses, setCourses] = useState([]);
+	const [activeCourse, setActiveCourse] = useState(null);
 
 	useEffect(() => {
+		setActiveCourse(null);
 
 		const getCourses = async () => {
 			try {
 				const response = await sendRequest({route: "teacher/courses"});
 				setCourses(response.courses);
-				console.log(response.courses);
 			} catch (error) {
 				console.log(error);
 			}
@@ -23,6 +25,16 @@ function TeacherCoursesPage() {
 
 		getCourses();
 	}, []);
+
+	useEffect(() => {
+
+		
+
+	}, [activeCourse]);
+
+	useEffect(() => {
+		console.log(activeTab);
+	}, [activeTab]);
 	
 
 	return (
@@ -30,11 +42,20 @@ function TeacherCoursesPage() {
 			<Sidebar
 				items={["Courses", "Messages", "Conferences"]}
 				selected={"Courses"}
+				setActiveCourse={(id) => setActiveCourse(id)}
 			/>
-			<div className="container courses-container">
+			<div className="container">
+			{ !activeCourse && <div className="course-container">
 			{courses?.map((course) => (
-				<TeacherCourseCard key={course.id} course={course} />
+				<TeacherCourseCard key={course.id} course={course} setActiveCourse={(id) => setActiveCourse(id)} />
 			))}
+			</div>}
+			{ activeCourse && <div>
+				<Navbar items={["Stream", "Classwork", "Sessions", "Discussion", "People", "Grades"]} selected={"Stream"} onTabChanged={(tab) => setActiveTab(tab) } />
+
+				</div>}
+
+			
 			</div>
 		</div>
 	);
