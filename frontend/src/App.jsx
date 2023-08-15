@@ -5,13 +5,16 @@ import "./styles/text.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import AuthorizationPage from "./Pages/Common/Authorization";
-import AdminLandingPage from "./Pages/Admin/Landing";
 import StudentLandingPage from "./Pages/Student/Landing";
 import E404 from "./Pages/E404";
 import TeacherCoursesPage from "./Pages/Teacher/Courses";
 import TeacherMessagesPage from "./Pages/Teacher/Messages";
 import TeacherConferencesPage from "./Pages/Teacher/Conferences";
-import AdminDashboardPage from "./Components/Admin/Dashboard";
+import AdminDashboardPage from "./Pages/Admin/Dashboard";
+import AdminCoursesPage from "./Pages/Admin/Courses";
+import AdminUsersPage from "./Pages/Admin/Users";
+import AdminSupportPage from "./Pages/Admin/Support";
+import AdminSettingsPage from "./Pages/Admin/Settings";
 import ParentMessagesPage from "./Pages/Parent/Messages";
 import ParentConferencesPage from "./Pages/Parent/Conferences";
 import ParentChildrenPage from "./Pages/Parent/Children";
@@ -22,7 +25,8 @@ import Quizzes from "./Pages/Parent/Children/components/Quizzes";
 import Attendances from "./Pages/Parent/Children/components/Attendance";
 import Chat from "./Pages/Parent/Messages/components/Chat";
 import Notifications from "./Pages/Parent/Children/components/Notifications";
-import ConferencesModal from "./Pages/Parent/Conferences/ConferencesModal";import StudentBrowsePage from "./Pages/Student/Browse";
+import ConferencesModal from "./Pages/Parent/Conferences/ConferencesModal";
+import StudentBrowsePage from "./Pages/Student/Browse";
 import StudentCoursesPage from "./Pages/Student/MyCourses";
 import StudentMessagesPage from "./Pages/Student/Messages";
 import StudentConferencesPage from "./Pages/Student/Conferences";
@@ -39,11 +43,14 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route path="/" element={<AuthorizationPage user={user} setUser={setUser} />} />
-				<Route path="/admin" element={<AdminLandingPage />} />
 				<Route path="/teacher/courses" element={<TeacherCoursesPage />} />
 				<Route path="/teacher/messages" element={<TeacherMessagesPage />} />
 				<Route path="/teacher/conferences" element={<TeacherConferencesPage />} />
 				<Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+				<Route path="/admin/users" element={<AdminUsersPage />} />
+				<Route path="/admin/courses" element={<AdminCoursesPage />} />
+				<Route path="/admin/support" element={<AdminSupportPage />} />
+				<Route path="/admin/settings" element={<AdminSettingsPage />} />
 				<Route path="/student" element={<StudentLandingPage />} />
 				<Route path="/parent/children" element={<ParentChildrenPage />} />
 				<Route path="/parent/messages" element={<ParentMessagesPage />} />
