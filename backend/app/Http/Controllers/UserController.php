@@ -17,7 +17,7 @@ class UserController extends Controller{
             'last_name' => 'required|string|max:255', 
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6',
-            'user_type' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
         ]);
 
         $user = User::where('email', $request->email)->first();
@@ -28,8 +28,8 @@ class UserController extends Controller{
             ], 422);
         }
 
-        $user_type = UserType::where('name', ucfirst($request->user_type))->first();
-        if (!$user_type){
+        $role = UserType::where('name', ucfirst($request->role))->first();
+        if (!$role){
             return response()->json([
                 'status' => 'error',
                 'message' => 'Invalid user type',
@@ -41,11 +41,11 @@ class UserController extends Controller{
             'last_name' => $request->last_name, 
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'user_type_id' => $user_type->id,
+            'user_type_id' => $role->id,
         ]);
 
         $token = Auth::login($user);
-        $user->user_type = $user_type->name;
+        $user->role = $role->name;
 
         return response()->json([
             'status' => 'success',
@@ -129,15 +129,15 @@ class UserController extends Controller{
     }
 
     public function getUsersByType($type){
-        $user_type = UserType::where('name', ucfirst($type))->first();
-        if (!$user_type){
+        $role = UserType::where('name', ucfirst($type))->first();
+        if (!$role){
             return response()->json([
                 'status' => 'error',
                 'message' => 'Invalid user type',
             ], 422);
         }
 
-        $users = User::where('user_type_id', $user_type->id)->get();
+        $users = User::where('user_type_id', $role->id)->get();
 
         return response()->json([
             'status' => 'success',

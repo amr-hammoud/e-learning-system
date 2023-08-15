@@ -1,0 +1,11 @@
+.details-header{
+    height: 150px;
+    width: 85%;
+    border: 1px solid black;
+    margin-left: 8%;
+    margin-bottom: 10%;
+    border-radius: 20px;
+    align-items: flex-end;
+    padding: 10px;
+    background-color: var(--color-secondary);
+}

@@ -1,0 +1,15 @@
+.children-bar-container{
+    height: 75px;
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+    padding-inline: 5%;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
