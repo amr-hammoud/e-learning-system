@@ -67,14 +67,10 @@ class TeacherController extends Controller
         }
     }
 
-    public function getMaterial(Request $request)
+    public function getMaterial($course_id)
     {
 
-        $request->validate([
-            'id' => 'numeric|exists:materials,id'
-        ]);
-
-        if ($request->id) {
+        if ($course_id) {
             $material = Material::find($request->id)->where("course_id", $request->course_id)->first();
         } else {
             $material = Material::orderBy('created_at', 'desc')->get();
