@@ -58,7 +58,7 @@ function App() {
 				<Route path="/parent/ConferencesModal" element={<ConferencesModal />} />
 
 				<Route path="/student/browse" element={<StudentBrowsePage />} />
-				<Route path="/student/my courses" element={<StudentCoursesPage />} />
+				<Route path="/student/my-courses" element={<StudentCoursesPage />} />
 				<Route path="/student/messages" element={<StudentMessagesPage />} />
 				<Route path="/student/conferences" element={<StudentConferencesPage />} />
 

@@ -52,13 +52,13 @@ function AuthorizationPage({setUser, user}) {
                 
                 setTimeout(() => {
                     if (response.user.role === 'Admin') {
-                        navigate('/admin');
+                        navigate('/admin/dashboard');
                     } else if (response.user.role === 'Teacher') {
                         navigate('/teacher/courses');
                     } else if (response.user.role === 'Student') {
-                        navigate('/student');
+                        navigate('/student/my-courses');
                     } else if (response.user.role === 'Parent') {
-                        navigate('/parent');
+                        navigate('/parent/children');
                     }
                 }, 2000);
 
