@@ -1,9 +1,17 @@
-import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
 import MeetingItem from "../../../Components/Common/MeetingItem/MeetingItem";
+import CreateMeeting from "../../../Components/TeacherComponents/CreateMeeting/CreateMeeting";
+import { useState } from "react";
 import './style.css'
 
 function TeacherConferencesPage() {
+
+	const [showModal, setShowModal] = useState(false);
+
+	const toggleModal = () => {
+		setShowModal(!showModal);
+	};
+
 	const meetings = [
 		{
 			id: 1,
@@ -33,7 +41,8 @@ function TeacherConferencesPage() {
 				selected={"Conferences"}
 			/>
 			<div className="container">
-				<button>Create Meeting</button>
+				<button onClick={toggleModal}>Create Meeting</button>
+				<CreateMeeting showModal={showModal} toggleModal={toggleModal} />
 				<div className="meetings-container">
 				     {meetings.map((meeting) => (
 					    <MeetingItem
