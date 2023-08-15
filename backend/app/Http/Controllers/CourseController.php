@@ -69,17 +69,17 @@ class CourseController extends Controller
 
     public function updateCourse(Request $request, $id){
         $request->validate([
-            'name' => 'required|string|max:255',
-            'subject' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
-            'max_enrollments' => 'required|integer',
-            'total_sessions' => 'required|integer',
-            'total_assignments' => 'required|integer',
-            'total_quizzes' => 'required|integer',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date',
-            'meeting_link' => 'required|string|max:255',
-            'teacher_id' => 'required|integer',
+            'name' => 'string|max:255',
+            'subject' => 'string|max:255',
+            'description' => 'string|max:255',
+            'max_enrollments' => 'integer',
+            'total_sessions' => 'integer',
+            'total_assignments' => 'integer',
+            'total_quizzes' => 'integer',
+            'start_date' => 'date',
+            'end_date' => 'date',
+            'meeting_link' => 'string|max:255',
+            'teacher_id' => 'integer',
         ]);
 
         $user_id = $request->teacher_id;
