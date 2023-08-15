@@ -6,7 +6,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import AuthorizationPage from "./Pages/Common/Authorization";
 import StudentLandingPage from "./Pages/Student/Landing";
-import E404 from "./Pages/E404";
+import E404 from "./Pages/Errors/E404";
+import E401 from "./Pages/Errors/E401";
 import TeacherCoursesPage from "./Pages/Teacher/Courses";
 import TeacherMessagesPage from "./Pages/Teacher/Messages";
 import TeacherConferencesPage from "./Pages/Teacher/Conferences";
@@ -65,10 +66,12 @@ function App() {
 				<Route path="/parent/ConferencesModal" element={<ConferencesModal />} />
 
 				<Route path="/student/browse" element={<StudentBrowsePage />} />
-				<Route path="/student/my-courses" element={<StudentCoursesPage />} />
+				<Route path="/student/my courses" element={<StudentCoursesPage />} />
 				<Route path="/student/messages" element={<StudentMessagesPage />} />
 				<Route path="/student/conferences" element={<StudentConferencesPage />} />
 
+
+				<Route path="/e401" element={<E401 />} />
 				<Route path="*" element={<E404 />} />
 			</Routes>
 		</BrowserRouter>
