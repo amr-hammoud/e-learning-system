@@ -1,9 +1,10 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
 import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
+import Navbar from "../../../Components/Common/Navbar";
+import Stream from "../../../Components/TeacherComponents/Stream/Stream";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
-import Navbar from "../../../Components/Common/Navbar";
 import "./style.css"
 
 const TeacherCoursesPage = () => {
@@ -53,6 +54,11 @@ const TeacherCoursesPage = () => {
 
 			{ activeCourse && <div>
 				<Navbar items={["Stream", "Classwork", "Sessions", "Discussion", "People", "Grades"]} selected={"Stream"} onTabChanged={(tab) => setActiveTab(tab) } />
+                {activeTab === "Stream" && <div className="course-stream">
+					<Stream activeCourse={activeCourse} />
+					</div>} 
+				
+
 
 				</div>}
 

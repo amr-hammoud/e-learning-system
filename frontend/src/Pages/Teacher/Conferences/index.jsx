@@ -37,7 +37,7 @@ function TeacherConferencesPage() {
 				selected={"Conferences"}
 			/>
 			<div className="container">
-				<button onClick={toggleModal}>Create Meeting</button>
+				<button onClick={toggleModal} className="create-meeting">Create Meeting</button>
 				<CreateMeeting showModal={showModal} toggleModal={toggleModal} />
 				<div className="meetings-container">
 				     {meetings?.map((meeting) => (
