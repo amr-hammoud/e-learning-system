@@ -1,0 +1,23 @@
+.progress-card{
+    width: 100%;
+    margin: 20px;
+}
+
+.progress-info{
+    height:300px;
+    width: 250px;
+    padding:15px;
+}
+.percentage{
+    height: 220px;
+    width: 220px;
+    padding: 15px;
+}
+.percentage:hover{
+    box-shadow: 0px 30px 18px -8px rgba(227, 227, 255, 0.1);
+    transform: scale(1.08, 1.08);
+    cursor: pointer;
+}
+.progress-title{
+    padding-top: 15px;
+}
