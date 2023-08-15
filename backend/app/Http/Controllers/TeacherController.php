@@ -11,12 +11,10 @@ use App\Models\Material;
 
 class TeacherController extends Controller
 {
-    //TODO: Material CRUD
     //TODO: Assessment CRUD
     //TODO: Session CRUD
     //TODO: Attendance CRUD
     //TODO: Discussion Group
-    //TODO: Course People
     //TODO: Chats & Messages
     //TODO: Student Submissions
     //TODO: Student Single Submission
