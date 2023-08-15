@@ -36,6 +36,7 @@ import MessageComponent from "./Pages/Student/MessageTeacher";
 import NotificationComponent from "./Pages/Student/CourseNotification";
 import Classwork from "./Components/Student/Classwork";
 import ProgressComponent from "./Pages/Student/ProgressComponent";
+import SessionComponent from "./Pages/Student/SessionsComponent";
 function App() {
 
 	const [user, setUser] = useState({
@@ -72,14 +73,14 @@ function App() {
 
 				<Route path="/student/browse" element={<StudentBrowsePage />} />
 				<Route path="/student/my courses" element={<StudentCoursesPage />} />
-				<Route path="/student/my courses/course/stream" element={<StudentStream/>} />
+				<Route path="/student/my courses/course/stream/:id" element={<StudentStream/>} />
 				<Route path="/student/messages" element={<StudentMessagesPage />} />
 				<Route path="/student/conferences" element={<StudentConferencesPage />} />
 				<Route path="student/my courses/message/teacher" element={<MessageComponent/>}/>
 				<Route path="student/my courses/course/notification" element={<NotificationComponent/>}/>
 				<Route path="student/my courses/course/classwork/assessment1" element={<Classwork />}/>
 				<Route path="student/my courses/course/progress" element={<ProgressComponent/>}/>
-				<Route path="student/my courses/course/progress" element={<ProgressComponent/>}/>
+				<Route path="student/my courses/course/sessions" element={<SessionComponent/>}/>
 
 
 				<Route path="/e401" element={<E401 />} />

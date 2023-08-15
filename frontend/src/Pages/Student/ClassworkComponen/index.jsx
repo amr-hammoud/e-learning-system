@@ -1,6 +1,7 @@
 import React from "react";
 import './style.css';
 import Classwork from "../../../Components/Student/Classwork";
+import Sidebar from "../../../Components/Common/Sidebar";
 const ClassworkComponent=()=>{
     const ass={"title": "AI Assignment",
                 "description": "Implement a sentiment analysis model using a neural network architecture. The model should be trained on a dataset of movie reviews and be able to classify the sentiment of a given review as positive or negative.",
@@ -12,18 +13,25 @@ const ClassworkComponent=()=>{
     }
     
 	return (
-    <div class="course-stream-container primary-bg">
-        <div className="flex column course-stream">
-            <div className="stream-head rounded blue-bg white-color">
-               <span>Course Name</span>
-            </div>
-            <div className="spacer-30"></div>
-            <div className="flex center primary-">
-                <Classwork ass={ass}/>
-            </div>
+        <div className="page flex">
+        <Sidebar
+				items={["My Courses", "Browse", "Messages", "Conferences"]}
+				selected={"My Courses"}
+			/>
+        <div class="course-stream-container primary-bg">
+                <div className="flex column course-stream">
+                    <div className="stream-head rounded blue-bg white-color">
+                    <span>Course Name</span>
+                    </div>
+                    <div className="spacer-30"></div>
+                    <div className="flex center primary-">
+                        <Classwork ass={ass}/>
+                    </div>
 
+                </div>
+            </div>
         </div>
-    </div>
+    
     );
 }
 export default ClassworkComponent;

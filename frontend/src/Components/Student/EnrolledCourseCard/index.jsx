@@ -1,10 +1,17 @@
 import React from "react";
 import "./style.css";
+import { useNavigate } from "react-router-dom";
 
 const CourseEnrolledCard=({course})=>{
+    const navigate = useNavigate();
+	const handleNavigate=(id)=>{
+		console.log(id)
+		navigate('/student/my courses/course/stream');
+		// navigate(`${id}`)
+	}
     console.log(course)
 	return (
-    <div class="flex column course-card white-bg rounded ">
+    <div class="flex column course-card white-bg rounded "  onClick={()=>navigate(`/student/my courses/course/stream/${course.id}`)}>
         <div className="course-info flex column">
             <div class="course-title flex column roundedSmall">
                 <h2 className="white-color">

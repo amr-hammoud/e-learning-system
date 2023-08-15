@@ -2,12 +2,14 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
+
+
 import CourseEnrolledCard from "../../../Components/Student/EnrolledCourseCard";
 import "./style.css";
 import { sendRequest } from "../../../config/request";
 // import StudentStream from "../Stream";
 function StudentCoursesPage() {
-	// const navigate = useNavigate();
+	
 	const [enrolledCourses, setEnrolledCourses] = useState([]);
 	const getEnrolledCourses=async ()=>{
 		try{
@@ -26,7 +28,7 @@ function StudentCoursesPage() {
 		getEnrolledCourses();
 	},[]);
 
-	const course={"title": "Artificial Intelligence"};
+	
 	return (
 		<div className="page flex">
 			<Sidebar
@@ -35,13 +37,10 @@ function StudentCoursesPage() {
 			/>
 			<div className="flex row course-browse-container primary-bg">
 				
-				{enrolledCourses.map((course) => {
-				return <CourseEnrolledCard course={course} />;
+				{enrolledCourses.map((course, index) => {
+				return <CourseEnrolledCard course={course} key={index}  />;
 			})}
-					
-				{/* <CourseEnrolledCard course={course}/>
-			    <CourseEnrolledCard  course={course}/>
-				<CourseEnrolledCard  course={course}/> */}
+			
 			</div>
 			{/* <div className="flex column course-browse-container primary-bg">
 			<StudentStream course={course}/>
@@ -49,5 +48,6 @@ function StudentCoursesPage() {
 		</div>
 	);
 }
+
 
 export default StudentCoursesPage;
