@@ -1,10 +1,20 @@
-import React from 'react'
-import './style.css'
+import React from "react";
+import "./style.css";
+import { useLocation, useNavigate } from "react-router-dom";
 
-function NavbarItem() {
-  return (
-    <div>NavbarItem</div>
-  )
-}
+const NavbarItem = ({ label, selected, onSelected }) => {
+	const clickHandler = () => {
+		onSelected(label);
+	};
 
-export default NavbarItem
+	return (
+		<div
+			className={selected ? `navbar-item active` : `navbar-item`}
+			onClick={() => clickHandler()}
+		>
+			{label}
+		</div>
+	);
+};
+
+export default NavbarItem;
