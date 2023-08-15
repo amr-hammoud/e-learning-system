@@ -3,7 +3,7 @@ import "./style.css";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 
-function Sidebar({ items, selected = items[0] }) {
+const Sidebar = ({ items, selected = items[0] }) => {
 	const [selectedTab, setSelectedTab] = useState(selected);
 
 	const selectHandler = (label) => {

@@ -12,6 +12,7 @@ import E404 from "./Pages/E404";
 import TeacherCoursesPage from "./Pages/Teacher/Courses";
 import TeacherMessagesPage from "./Pages/Teacher/Messages";
 import TeacherConferencesPage from "./Pages/Teacher/Conferences";
+import AdminDashboardPage from "./Components/Admin/Dashboard";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
 				<Route path="/teacher/courses" element={<TeacherCoursesPage />} />
 				<Route path="/teacher/messages" element={<TeacherMessagesPage />} />
 				<Route path="/teacher/conferences" element={<TeacherConferencesPage />} />
+				<Route path="/admin/dashboard" element={<AdminDashboardPage />} />
 				<Route path="/student" element={<StudentLandingPage />} />
 				<Route path="/parent" element={<ParentLandingPage />} />
 				<Route path="*" element={<E404 />} />

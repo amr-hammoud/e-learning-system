@@ -6,7 +6,7 @@ import { BsPersonVideo } from "react-icons/bs";
 import { LuMessagesSquare } from "react-icons/lu";
 import { useLocation, useNavigate } from "react-router-dom";
 
-function SidebarItem({ label, selected, onSelected }) {
+const SidebarItem = ({ label, selected, onSelected }) => {
 	const navigation = useNavigate();
 	const location = useLocation();
 	const base_location = location.pathname.split("/")[1];
@@ -26,7 +26,7 @@ function SidebarItem({ label, selected, onSelected }) {
 	} else if (label === "Browse") {
 		icon = <BiSearch />;
 	} else {
-		icon = "label error";
+		// icon = "label error";
 	}
 	return (
 		<div
