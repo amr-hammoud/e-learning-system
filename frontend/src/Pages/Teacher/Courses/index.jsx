@@ -1,6 +1,6 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
-import CourseCard from "../../../Components/Common/CourseCard";
+import CourseCard from "../../../Components/TeacherComponents/CourseCard";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
