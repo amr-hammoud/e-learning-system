@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Material;
 use App\Models\Meeting;
+use App\Models\User;
 
 class TeacherController extends Controller
 {
@@ -20,7 +21,6 @@ class TeacherController extends Controller
     //TODO: Student Submissions
     //TODO: Student Single Submission
     //TODO: Grade & Feedback
-    //TODO: Conferences CRUD
 
     public function courses($id = null)
     {
@@ -85,6 +85,30 @@ class TeacherController extends Controller
             'status' => 'success',
             'data' => $material,
         ], 200);
+    }
+
+    public function createConference(Request $request)
+    {
+
+        $request->validate([
+            'date_time' => 'required|date|after_or_equal:now',
+            'email' => 'required|email|exists:users,email',
+            'link' => 'required|string'
+        ]);
+
+        $host = Auth::user();
+        $guest = User::where('email', $request->email)->first();
+
+        $meeting = new Meeting;
+        $meeting->host_id = $host->id;
+        $meeting->guest_id = $guest->id;
+        $meeting->meeting_link = $request->link;
+        $meeting->date_time = $request->date_time;
+        $meeting->save();
+        return response()->json([
+            'status' => 'meeting scheduled successfully',
+            'meeting details' => $meeting
+        ]);
     }
 
     public function getConferences()
