@@ -1,0 +1,21 @@
+.meeting-card{
+    width:100%;
+    
+}
+.meeting-info{
+    width:300px;
+    height:100%;
+}
+.meeting-data{
+    width:100%;
+    padding:10px;
+    padding:25px;
+    margin-bottom: 10px;
+    gap:20px;
+}
+.row-meeting{
+gap:5px;
+}
+.btn{
+    margin-top: 15px;
+}
