@@ -1,12 +1,11 @@
 import React from 'react'
 import "./style.css"
-import ChildrenProgress from '../ChildrenProgress'
 import { useLocation, useNavigate } from "react-router-dom";
 const ChildCard = ({backgroundColor,text}) => {
   const navigation = useNavigate();
 	const location = useLocation();
   const base_location = location.pathname.split("/")[1];
-  const clickHandler = () =>{7
+  const clickHandler = () =>{
     navigation(`/${base_location}/ChildrenProgress`);
   }
   return (

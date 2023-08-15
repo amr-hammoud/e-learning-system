@@ -4,7 +4,7 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import ChildCard from "./components/ChildCard";
 const ParentChildrenPage = () => {
   const children = ["Youssef","Houssein"];
-  const colors = [1,2,3,4];
+
   return (
     <div className="page flex">
 			<Sidebar items = {["Children","Messages", "Conferences"]} selected={"Children"} />
