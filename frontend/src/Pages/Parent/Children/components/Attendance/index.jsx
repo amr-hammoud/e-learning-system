@@ -4,12 +4,25 @@ import Navbar from '../../../../../Components/Common/Navbar'
 import ChildrenProgressBar from '../ChildrenProgressBar'
 import Header from '../Header'
 import "./style.css"
+import { useLocation, useNavigate } from 'react-router-dom'
 const Attendances = () => {
   const [activeTab, setActiveTab] = useState("Stream");
-
+  const navigation = useNavigate();
+	const location = useLocation();
   useEffect(() => {
-      console.log(activeTab);
-      //Add if else to render your desired component
+    if(activeTab === "Notifications"){
+      console.log("noti")
+      
+      const base_location = location.pathname.split("/")[1];
+      navigation(`/${base_location}/notifications`);
+      setActiveTab("Notifications")
+    }
+    else if (activeTab === "Progress"){
+      const base_location = location.pathname.split("/")[1];
+      navigation(`/${base_location}/Attendances`);
+      setActiveTab("Progress")
+    }
+      
       
   
   }, [activeTab]);

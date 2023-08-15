@@ -6,18 +6,27 @@ import ChildCard from '../ChildCard'
 import { useLocation, useNavigate } from "react-router-dom";
 const ChildrenProgress = () => {
   const [activeTab, setActiveTab] = useState("Stream");
-
+  const navigation = useNavigate();
+	const location = useLocation();
   useEffect(() => {
-      console.log(activeTab);
-      //Add if else to render your desired component
+    if(activeTab === "Notifications"){
+      console.log("noti")
+      
+      const base_location = location.pathname.split("/")[1];
+      navigation(`/${base_location}/notifications`);
+      setActiveTab("Notifications")
+    }
+    else if (activeTab === "Progress"){
+      const base_location = location.pathname.split("/")[1];
+      navigation(`/${base_location}/ChildrenProgress`);
+      setActiveTab("Progress")
+    }
       
   
   }, [activeTab]);
-  const navigation = useNavigate();
-	const location = useLocation();
-  const base_location = location.pathname.split("/")[1];
+  
   const courses = ["Youssef","Houssein"];
-  const notificationCLicked = () => navigation(`/${base_location}/notifications`);
+
   return (
     <div className='flex'>
         <Sidebar items = {["Children","Messages", "Conferences"]} selected={"Children"} />

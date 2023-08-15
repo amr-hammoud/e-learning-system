@@ -1,39 +1,28 @@
 import React, { useState } from 'react'
-import Modal from "react-modal"
+import ModalComponent from '../../../../Components/Base/Modal/modal';
 import "./style.css"
-const ConferencesModal = ({isOpen,handleClose}) => {
+const ConferencesModal = ({showModal , toggleModal}) => {
 const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+  
   return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={handleClose}
-      className="modal flex column center"
-      overlayClassName="overlay"
-    >
-        <div className='input-container flex column'>
-            <label htmlFor="date">Date</label>
-            <input type="text" id='date' className='input'/>
-        </div>
-        <div className='input-container flex column'>
-            <label htmlFor="time">Time</label>
-            <input type="text" id='time' className='input' />
-        </div>
-        <div className='checkbox flex'>
-        <label htmlFor="checkbox">In Person</label>
-        <input
-          type="checkbox"
-          id='checkbox'
-          checked={isChecked}
-          onChange={handleCheckboxChange}
-        />
-        </div>
-        <button className='create-button'>Create</button>
-        
-    </Modal>
+    <ModalComponent showModal={showModal} onRequestClose={toggleModal}>
+      <div className="create-meeting__form">
+                <h1>Create Meeting</h1>
+                <div className="create-meeting__input">
+                   <label htmlFor="DateTime">Date and Time</label>
+                   <input type="datetime-local" name="DateTime" id="DateTime" />
+                </div>
+                <div className="create-meeting__buttons">
+                  <button className="cancel-button" onClick={toggleModal}>Cancel</button>
+                  <button className="confirm-button">Confirm</button>
+                </div>
+            </div>
+    </ModalComponent>
+    
   )
 }
 
