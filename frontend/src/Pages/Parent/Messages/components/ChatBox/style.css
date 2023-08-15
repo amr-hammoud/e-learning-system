@@ -1,0 +1,14 @@
+.box{
+    max-width: 400px;
+    border: 1px solid black;
+    padding: 10px;
+    overflow: hidden;
+}
+.sent{
+    background-color: var(--color-secondary);
+    align-self: flex-end;
+}
+.receive{
+    background-color: var(--color-primary);
+    align-self: flex-start;
+}

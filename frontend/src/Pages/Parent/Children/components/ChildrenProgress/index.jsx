@@ -1,7 +1,7 @@
 import React from 'react'
 import Sidebar from '../../../../../Components/Common/Sidebar'
 import "./style.css"
-import ParentCourseCard from '../ParentCourseCard'
+import ChildCard from '../ChildCard'
 const ChildrenProgress = () => {
   const courses = ["Youssef","Houssein"];
   return (
@@ -15,9 +15,12 @@ const ChildrenProgress = () => {
           <div className="flex">
           {courses?.map((course) => {
 					return (
-						<ParentCourseCard 
+						<ChildCard 
             backgroundColor={Math.floor(Math.random() * (4 - 1 + 1)) + 1}
-            text = {course}/>
+            text = {course}
+            navigate={"ChildrenProgressDetails"}
+            />
+            
 					);
 				})}
           </div>

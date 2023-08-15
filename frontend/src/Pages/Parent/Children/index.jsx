@@ -14,6 +14,7 @@ const ParentChildrenPage = () => {
 						<ChildCard 
               backgroundColor={Math.floor(Math.random() * (4 - 1 + 1)) + 1}
               text = {child}
+              navigate={"ChildrenProgress"}
             />
 					);
 				})}

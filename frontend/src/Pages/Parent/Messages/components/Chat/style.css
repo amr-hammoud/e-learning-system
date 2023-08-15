@@ -1,0 +1,21 @@
+.header{
+    width: 100%;
+    height: 10vh;
+    border: 1px solid black;
+    border-radius: 5px;
+    align-items: center;
+    padding-left: 5%;
+}
+.chat{
+    width: 100%;
+    height: 88vh;
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 5%;
+    overflow: scroll;
+}
+.chat-container{
+    margin: 0 auto;
+    width: 70%;
+    height: 100vh;
+}
