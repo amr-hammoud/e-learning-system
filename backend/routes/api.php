@@ -69,8 +69,8 @@ Route::prefix('auth')->group(function () {
     Route::post('logout', [AuthController::class, 'logout']);
     Route::post('refresh', [AuthController::class, 'refresh']);
     
-    Route::group(["prefix" => "parent"], function(){
-        Route::get("{parent}/get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
+    Route::group(["middleware" => "parent","prefix" => "parent"], function(){
+        Route::get("get-student-progress-of-course", [ParentController::class, "getStudentProgress"]);
         Route::post('message-teacher', [ParentController::class, "sendMessage"]);
         Route::post('messages-teacher', [ParentController::class, "getMessages"]);
         Route::post('get-student-schedule-records', [ParentController::class, "viewSchedule"]);
