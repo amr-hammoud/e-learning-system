@@ -94,9 +94,10 @@ a {
   --color-text-primary: #181818;
   --color-text-secondary: #615e77;
   --color-dark-gray: #383838;
-
+  --color-secondary: #ff8740;
   --font-primary: "Poppins", sans-serif;
 }
+
 
 *,
 *::before,

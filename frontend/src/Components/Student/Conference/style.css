@@ -1,0 +1,14 @@
+.meeting-info{
+    margin-top: 30px;
+    height:80px;
+   
+    padding:30px;
+    /* margin-right: 30px; */
+}
+.meeting-date{
+    gap:90px;
+}
+.meet_link{
+    color:blue;
+    cursor: pointer;
+}

@@ -1,0 +1,13 @@
+.Navbar{
+    margin-left: 250px;
+    height: 100px;
+    padding: 3%;
+}
+.navbar-button{
+    background-color: white;
+    border: none;
+    margin-left: 5%;
+}
+.parent-course-card{
+    width: 80%;
+}

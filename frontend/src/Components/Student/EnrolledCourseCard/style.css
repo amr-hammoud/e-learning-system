@@ -1,0 +1,33 @@
+.course-card{
+    flex-grow: 1;
+    width: 300px;
+    height: 250px;
+    margin: 10px;
+    margin-left:20px;
+    align-items: start;
+    align-items: flex-start;
+    padding-right: 30px;
+}
+.course-card:hover{
+    box-shadow: 0px 30px 18px -8px rgba(113, 112, 153, 0.1);
+    transform: scale(1.05, 1.05);
+    cursor: pointer;
+}
+.course-info{
+    width:100%;
+    align-items: flex-start;
+    
+}
+.course-title{
+    margin:15px;
+    width: 100%; 
+    background-color: var(--color-primary);
+    padding:10px;   
+}
+.course-subject{
+    width:100%;
+    padding:10px;
+    padding-left:25px;
+    margin-bottom: 10px;
+   
+}

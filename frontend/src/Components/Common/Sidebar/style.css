@@ -6,16 +6,32 @@
     gap: 50px;
 }
 
-.sidebar .logo{
+.sidebar .logo {
     width: 100px;
     margin-top: 50px;
 }
 
-.sidebar .items{
+.sidebar .items {
     width: 100%;
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     gap: 15px;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    width: 80%;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.logout:hover {
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    cursor: pointer;
 }
