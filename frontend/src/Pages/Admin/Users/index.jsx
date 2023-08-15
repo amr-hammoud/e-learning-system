@@ -3,7 +3,7 @@ import "./style.css";
 import Sidebar from "../../../Components/Common/Sidebar";
 import UserRow from "../../../Components/Admin/UserRow";
 import { sendRequest } from "../../../config/request";
-import CreateOrUpdateUser from "../../../Components/Admin/CreateOrUpdateUser";
+
 
 const AdminUsersPage = () => {
 	const [users, setUsers] = useState([]);
