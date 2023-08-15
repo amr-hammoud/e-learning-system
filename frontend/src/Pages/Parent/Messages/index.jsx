@@ -13,7 +13,7 @@ const ParentMessagesPage = () => {
               backgroundColor={Math.floor(Math.random() * (4 - 1 + 1)) + 1}
               text = {child}
               subname={child}
-              navigate={"ChildrenProgress"}
+              navigate={"Chat"}
             />
 					);
 				})}
