@@ -1,32 +1,30 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
-import CourseCard from "../../../Components/Common/CourseCard";
+import CourseCard from "../../../Components/TeacherComponents/CourseCard";
+import { useEffect, useState } from "react";
+import { sendRequest } from "../../../config/request";
 import "./style.css"
+import { useFetcher } from "react-router-dom";
 
 function TeacherCoursesPage() {
+	
+	const [courses, setCourses] = useState([]);
 
-	const courses = [
-		{
-			id : 1,
-			name : "Course 1",
-			subject : "Subject 1",
-			description : "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-		},
+	useEffect(() => {
 
-		{
-			id : 2,
-			name : "Course 2",
-			subject : "Subject 2",
-			description : "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-		},
+		const getCourses = async () => {
+			try {
+				const response = await sendRequest({route: "teacher/courses"});
+				setCourses(response.courses);
+				console.log(response.courses);
+			} catch (error) {
+				console.log(error);
+			}
+		};
 
-		{
-			id : 3,
-			name : "Course 3",
-			subject : "Subject 3",
-			description : "lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,",
-		}
-	]
+		getCourses();
+	}, []);
+	
 
 	return (
 		<div className="page flex">
@@ -35,7 +33,7 @@ function TeacherCoursesPage() {
 				selected={"Courses"}
 			/>
 			<div className="container courses-container">
-			{courses.map((course) => (
+			{courses?.map((course) => (
 				<CourseCard key={course.id} course={course} />
 			))}
 			</div>
