@@ -16,6 +16,16 @@ const AdminUsersPage = () => {
 		setUsers(response.users);
 	};
 
+	const deleteUser = async (id) => {
+		const response = await sendRequest({
+			method: "DELETE",
+			route: `/admin/user/delete/${id}`,
+		});
+		if (response.status === "success") {
+			fetchUsers();
+		}
+	};
+
 	return (
 		<div className="page flex">
 			<Sidebar
