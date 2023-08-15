@@ -4,7 +4,6 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import UserRow from "../../../Components/Admin/UserRow";
 import { sendRequest } from "../../../config/request";
 
-
 const AdminUsersPage = () => {
 	const [users, setUsers] = useState([]);
 
@@ -47,7 +46,7 @@ const AdminUsersPage = () => {
 								key={index}
 								user={user}
 								onDelete={(id) => deleteUser(id)}
-								onUpdate={(id) => updateUser(id)}
+								// onUpdate={(id) => updateUser(id)}
 							/>
 						);
 					})}
