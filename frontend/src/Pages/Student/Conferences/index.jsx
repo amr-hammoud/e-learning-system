@@ -8,6 +8,9 @@ const StudentConferencesPage=()=>{
 					"teacher": "John Smith",
 					"link": "https://meet.google.com/abc123xyz"
 				}
+	const teachers={
+		"teacher":"Chris Sefactory"
+	}
 	return (
 		<div className="page flex">
 			<Sidebar
@@ -30,7 +33,7 @@ const StudentConferencesPage=()=>{
 				<Conference meeting={meeting} />
 				<Conference meeting={meeting} />
 				<Conference meeting={meeting} /> */}
-				<NewMeeting />
+				<NewMeeting teachers={teachers}/>
 			</div>
 			</div>
 

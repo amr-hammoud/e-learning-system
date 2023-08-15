@@ -14,10 +14,7 @@ const NewMeeting=({teachers})=>{
                 <div className="row-meeting flex column">
                     <label>Choose a teacher</label>
                     <select>
-                    <option value="1">Teacher1 Name</option>
-                    <option value="2">Teacher1 Name</option>
-                    <option value="3">Teacher1 Name</option>
-                    <option value="4">Teacher1 Name</option>
+                    <option value="1">{teachers.teacher}</option>
                     </select>
                 </div>
                 <div className="row-meeting btn flex column">

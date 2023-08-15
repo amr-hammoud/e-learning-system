@@ -2,6 +2,7 @@ import React from "react";
 import './style.css';
 import CourseStream from "../../../Components/Student/CourseStream";
 import Classwork from "../../../Components/Student/Classwork";
+import Session from "../../../Components/Student/Session";
 
 const StudentStream=({course})=>{
     const ass={"title": "AI Assignment",
@@ -12,7 +13,11 @@ const StudentStream=({course})=>{
                 "grade":"100",
                 "attachment": "https://example.com/ai_assignment.pdf"
     }
-
+    const session={
+        "date":"2022-10-30",
+        "time":"10:00",
+        "link":"https://meet.google.com/abc123xyz"
+    }
 	return (
     <div class="course-stream-container primary-bg">
         <div className="flex column course-stream">
@@ -28,9 +33,11 @@ const StudentStream=({course})=>{
                 <CourseStream ass={ass}/>
             </div> */}
 
-            <div className="flex center primary-">
+            {/* <div className="flex center primary-">
                 <Classwork ass={ass}/>
-            </div>
+            </div> */}
+            <Session session={session}/>
+            <Session session={session}/>
             
         </div>
     </div>
