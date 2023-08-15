@@ -23,18 +23,15 @@ class TeacherController extends Controller
     //TODO: Student Single Submission
     //TODO: Grade & Feedback
 
-    public function courses($id = null)
+    public function getCourses()
     {
         $user = Auth::user();
-        if ($id) {
-            $courses = Course::all()->where("id", $id)->where("teacher_id", $user->id)->first();
-        } else {
-            $courses = Course::where("teacher_id", $user->id)->get();
-        }
+        
+        $courses = Course::where("teacher_id", $user->id)->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $courses,
+            'courses' => $courses,
         ], 200);
     }
 
