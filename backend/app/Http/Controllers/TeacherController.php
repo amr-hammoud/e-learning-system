@@ -62,7 +62,7 @@ class TeacherController extends Controller
 
             return response()->json([
                 'status' => 'success',
-                'data' => $material,
+                'material' => $material,
             ], 200);
         } else {
         }
@@ -83,7 +83,7 @@ class TeacherController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $material,
+            'material' => $material,
         ], 200);
     }
 
@@ -107,7 +107,7 @@ class TeacherController extends Controller
         $meeting->save();
         return response()->json([
             'status' => 'meeting scheduled successfully',
-            'meeting details' => $meeting
+            'meeting' => $meeting
         ]);
     }
 
@@ -127,7 +127,7 @@ class TeacherController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'data' => $formattedMeetings,
+            'meetings' => $formattedMeetings,
         ], 200);
     }
 
