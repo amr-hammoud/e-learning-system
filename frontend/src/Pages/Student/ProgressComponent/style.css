@@ -1,0 +1,21 @@
+.stream-head{
+    height: 30%;
+    margin-top: 20px;
+    font-size: 32px;
+    padding-top: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
+    padding-bottom: 5px;
+}
+.stream-head span{
+    padding-left: 10px;
+}
+.stream-container{
+    max-height: 448px;  
+    gap:20px;
+    overflow-y:scroll;
+}
+.progress-data{
+    width: 100%;
+    margin-left: 25px;
+}

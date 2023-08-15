@@ -2,7 +2,7 @@ import React from "react";
 import './style.css';
 import MessageContainer from "../../../Components/Student/MessageContainer";
 const MessageComponent=()=>{
-    const course={"title": "Artificial Intelligence"};
+    const course={"title": "Course Name"};
 
     return(
         <div class="course-stream-container primary-bg">

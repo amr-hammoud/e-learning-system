@@ -11,14 +11,14 @@ function StudentCoursesPage() {
 				items={["My Courses", "Browse", "Messages", "Conferences"]}
 				selected={"My Courses"}
 			/>
-			{/* <div className="flex row course-browse-container primary-bg">
+			<div className="flex row course-browse-container primary-bg">
 				<CourseEnrolledCard course={course}/>
 			    <CourseEnrolledCard  course={course}/>
 				<CourseEnrolledCard  course={course}/>
-			</div> */}
-			<div className="flex column course-browse-container primary-bg">
-			<StudentStream course={course}/>
 			</div>
+			{/* <div className="flex column course-browse-container primary-bg">
+			<StudentStream course={course}/>
+			</div> */}
 		</div>
 	);
 }
