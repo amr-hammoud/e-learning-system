@@ -121,7 +121,7 @@ class TeacherController extends Controller
         $formattedMeetings = $meetings->map(function ($meeting) {
             return [
                 'name' => $meeting->guestname,
-                'date' => $meeting->formatteddatetime,
+                'date_time' => $meeting->formatteddatetime,
                 'link' => $meeting->meeting_link,
             ];
         });
