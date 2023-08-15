@@ -1,6 +1,7 @@
 import React from 'react'
 import Sidebar from '../../../../../Components/Common/Sidebar'
 import ChildrenProgressCard from '../ChildrenProgressCard'
+import Header from '../Header'
 import "./style.css"
 const ChildrenProgressDetails = () => {
   return (
@@ -11,6 +12,7 @@ const ChildrenProgressDetails = () => {
             <button className="navbar-button">Progress</button>
             <button className="navbar-button">Notifications</button>
           </div>
+          <Header title={"Course title"}/>
           <div className="flex spaceAround">
             <ChildrenProgressCard text={"Assignments"}/>
             <ChildrenProgressCard text={"Quizzes"}/>
