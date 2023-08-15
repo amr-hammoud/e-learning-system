@@ -15,8 +15,9 @@ import ParentConferencesPage from "./Pages/Parent/Conferences";
 import ParentChildrenPage from "./Pages/Parent/Children";
 import ChildrenProgress from "./Pages/Parent/Children/components/ChildrenProgress";
 import ChildrenProgressDetails from "./Pages/Parent/Children/components/ChildrenProgressDetails";
-
-
+import Assignments from "./Pages/Parent/Children/components/Assignments";
+import Quizzes from "./Pages/Parent/Children/components/Quizzes";
+import Attendances from "./Pages/Parent/Children/components/Attendance";
 function App() {
 	return (
 		<BrowserRouter>
@@ -32,6 +33,9 @@ function App() {
 				<Route path="/parent/conferences" element={<ParentConferencesPage />} />
 				<Route path="/parent/ChildrenProgress" element={<ChildrenProgress />} />
 				<Route path="/parent/ChildrenProgressDetails" element={<ChildrenProgressDetails />} />
+				<Route path="/parent/Assignments" element={<Assignments />} />
+				<Route path="/parent/Quizzes" element={<Quizzes />} />
+				<Route path="/parent/Attendances" element={<Attendances />} />
 				
 				<Route path="*" element={<E404 />} />
 			</Routes>
