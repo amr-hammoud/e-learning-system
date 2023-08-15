@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Course;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -139,4 +140,28 @@ class CourseController extends Controller
         ]);
     }
 
+
+    public function students($course_id){
+
+        if($course_id){
+            $course = Course::find($course_id);
+
+            if($course){
+                $students = $course->students()->with('parents')->orderBy('first_name')->get();
+                return response()->json([
+                    'status' => 'success',
+                    'data' => $students,
+                ], 200);
+            }
+            else{
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'Course not found',
+                ]);
+            }
+
+            
+        }
+
+    }
 }
