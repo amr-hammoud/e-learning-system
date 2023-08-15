@@ -1,9 +1,12 @@
 import React from "react";
 import './style.css';
-
+import { useNavigate } from "react-router-dom";
+    
 const CourseStream=({stream})=>{
+    const navigate = useNavigate();
+
 	return (
-        <div className="stream-body flex column white-bg roundedSmall">
+        <div className="stream-body flex column white-bg roundedSmall" onClick={()=>{navigate(`/student/my courses/course/classwork/assessment/${stream.id}`)}}>
             <div className="stream-body-top flex row">
                 <div className="stream-title">
                     {stream.title}

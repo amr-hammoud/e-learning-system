@@ -34,7 +34,7 @@ import StudentConferencesPage from "./Pages/Student/Conferences";
 import StudentStream from "./Pages/Student/Stream";
 import MessageComponent from "./Pages/Student/MessageTeacher";
 import NotificationComponent from "./Pages/Student/CourseNotification";
-import Classwork from "./Components/Student/Classwork";
+import ClassworkComponent from "./Pages/Student/ClassworkComponen";
 import ProgressComponent from "./Pages/Student/ProgressComponent";
 import SessionComponent from "./Pages/Student/SessionsComponent";
 function App() {
@@ -78,7 +78,7 @@ function App() {
 				<Route path="/student/conferences" element={<StudentConferencesPage />} />
 				<Route path="student/my courses/message/teacher" element={<MessageComponent/>}/>
 				<Route path="student/my courses/course/notification" element={<NotificationComponent/>}/>
-				<Route path="student/my courses/course/classwork/assessment1" element={<Classwork />}/>
+				<Route path="student/my courses/course/classwork/assessment/:id" element={<ClassworkComponent/>}/>
 				<Route path="student/my courses/course/progress" element={<ProgressComponent/>}/>
 				<Route path="student/my courses/course/sessions" element={<SessionComponent/>}/>
 

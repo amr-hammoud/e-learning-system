@@ -30,7 +30,7 @@ const StudentStream=()=>{
     const [activeTab,setActiveTab]=useState("Stream");
     const navigation=useNavigate();
     if (activeTab==="Classwork"){
-        navigation('/student/my courses/course/classwork/assessment1')
+        navigation('/student/my courses/course/classwork/assessment/1')
         setActiveTab("Classwork")
     }
     if (activeTab==="Sessions"){
