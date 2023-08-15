@@ -1,0 +1,62 @@
+.classwork-details{
+    margin: 10px;
+    margin-left:30px;
+    margin-right: 30px;
+    align-items: start;
+    align-items: flex-start;
+    padding-right: 30px;
+    background-color: #d5e4ef;
+}
+.classwork-info{
+    width:100%;
+    align-items: flex-start;
+}
+.classwork-title{
+    padding-top: 5px;
+    margin:15px;
+    width: 100%; 
+    background-color:white;
+    padding:10px;   
+}
+.classwork-title h2{
+    margin-top: 50px;
+}
+.classwork-data{
+    padding-top:10px;
+    gap:40px;
+    justify-content: space-between;
+}
+.classwork-date{
+    margin-bottom: 10px;
+}
+.classwork-description{
+    width:100%;
+    padding:10px;
+}
+.classwork-instructions{
+    gap:10px;
+    height:auto;
+}
+.classwork-content{
+    width:70%;
+    margin-left:30px
+}
+.classwork-attach{
+    margin-left:30px;
+    height: 120px;
+}
+.classwork-file{
+    gap:10px;
+    margin-left: 10px;
+    margin-right: 10px
+}
+.ass-file{
+    margin-top: 10px;
+    width: 200px;
+    border: none;
+    background: #d5e4ef;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+}
