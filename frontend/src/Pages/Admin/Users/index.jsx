@@ -27,6 +27,19 @@ const AdminUsersPage = () => {
 		}
 	};
 
+	const updateUser = async (updatedUserData) => {
+		const response = await sendRequest({
+			method: "POST",
+			route: `/admin/user/update/${updatedUserData.id}`,
+			body: updatedUserData,
+		});
+		if (response.status === "success") {
+			fetchUsers();
+			toggleUpdateModal();
+		}
+	};
+
+	const handleUpdateUser = (id) => {};
 
 	const createUser = async (userData) => {
 		console.log("DATA: ", userData);
@@ -51,6 +64,10 @@ const AdminUsersPage = () => {
 		setShowCreateModal(!showCreateModal);
 	};
 
+	const [showUpdateModal, setShowUpdateModal] = useState(false);
+	const toggleUpdateModal = () => {
+		setShowUpdateModal(!showUpdateModal);
+	};
 
 	const [userData, setUserData] = useState({});
 
@@ -78,6 +95,13 @@ const AdminUsersPage = () => {
 						handleRequest={createUser}
 					/>
 
+					<UpdateUser
+						showModal={showUpdateModal}
+						toggleModal={toggleUpdateModal}
+						handleRequest={updateUser}
+						user={userData}
+						handleUserData={setUserData}
+					/>
 
 					{users.map((user, index) => {
 						return (
@@ -85,7 +109,8 @@ const AdminUsersPage = () => {
 								key={index}
 								user={user}
 								onDelete={(id) => deleteUser(id)}
-								// onUpdate={(id) => handleUpdateUser(id)}
+								onUpdate={() => {setUserData(user);
+									toggleUpdateModal()}}
 							/>
 						);
 					})}
