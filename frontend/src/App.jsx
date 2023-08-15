@@ -19,6 +19,7 @@ import Assignments from "./Pages/Parent/Children/components/Assignments";
 import Quizzes from "./Pages/Parent/Children/components/Quizzes";
 import Attendances from "./Pages/Parent/Children/components/Attendance";
 import Chat from "./Pages/Parent/Messages/components/Chat";
+import Notifications from "./Pages/Parent/Children/components/Notifications";
 function App() {
 	return (
 		<BrowserRouter>
@@ -38,7 +39,7 @@ function App() {
 				<Route path="/parent/Quizzes" element={<Quizzes />} />
 				<Route path="/parent/Attendances" element={<Attendances />} />
 				<Route path="/parent/Chat" element={<Chat />} />
-				
+				<Route path="/parent/notifications" element={<Notifications />} />
 				<Route path="*" element={<E404 />} />
 			</Routes>
 		</BrowserRouter>

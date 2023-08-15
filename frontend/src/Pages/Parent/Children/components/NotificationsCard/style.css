@@ -1,0 +1,10 @@
+.notification-card{
+    width: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    overflow: hidden;
+}
+.notification-text{
+    max-width: 90%;
+    overflow: hidden;
+}
