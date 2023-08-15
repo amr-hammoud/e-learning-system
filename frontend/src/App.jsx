@@ -22,7 +22,10 @@ import Quizzes from "./Pages/Parent/Children/components/Quizzes";
 import Attendances from "./Pages/Parent/Children/components/Attendance";
 import Chat from "./Pages/Parent/Messages/components/Chat";
 import Notifications from "./Pages/Parent/Children/components/Notifications";
-import ConferencesModal from "./Pages/Parent/Conferences/ConferencesModal";
+import ConferencesModal from "./Pages/Parent/Conferences/ConferencesModal";import StudentBrowsePage from "./Pages/Student/Browse";
+import StudentCoursesPage from "./Pages/Student/MyCourses";
+import StudentMessagesPage from "./Pages/Student/Messages";
+import StudentConferencesPage from "./Pages/Student/Conferences";
 function App() {
 
 	const [user, setUser] = useState({
@@ -53,6 +56,12 @@ function App() {
 				<Route path="/parent/Chat" element={<Chat />} />
 				<Route path="/parent/notifications" element={<Notifications />} />
 				<Route path="/parent/ConferencesModal" element={<ConferencesModal />} />
+
+				<Route path="/student/browse" element={<StudentBrowsePage />} />
+				<Route path="/student/my courses" element={<StudentCoursesPage />} />
+				<Route path="/student/messages" element={<StudentMessagesPage />} />
+				<Route path="/student/conferences" element={<StudentConferencesPage />} />
+
 				<Route path="*" element={<E404 />} />
 			</Routes>
 		</BrowserRouter>

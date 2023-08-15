@@ -1,10 +1,20 @@
-import React from 'react'
-import './style.css'
+import React from 'react';
+import './style.css';
 
-function Button() {
+const Button=({ text, color, textColor, onClick, enabled = true })=>{
+  const clickHandler = () => {
+    if (enabled) {
+      console.log("clicked");
+    }
+  };
+  
+  
   return (
-    <div>Button</div>
-  )
+    <button className={`roundedMedium base-button pointer ${color} ${textColor}`}
+    onClick={() => clickHandler()}>
+    {text}
+    </button>
+  );
 }
 
-export default Button
+export default Button;

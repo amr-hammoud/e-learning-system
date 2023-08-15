@@ -5,6 +5,9 @@
 .white-bg {
     background-color: var(--color-white);
 }
+.blue-bg{
+    background-color: var( --color-primary);
+}
 
 .primary-color {
     color: var(--color-text-primary);

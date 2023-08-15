@@ -1,0 +1,45 @@
+.course-card-details{
+    width: 700px;
+    height: 550px;
+    margin: 10px;
+    margin-left:20px;
+    align-items: start;
+    align-items: flex-start;
+    padding-right: 30px;
+}
+.course-datails-info{
+    width:100%;
+    align-items: flex-start;
+    
+}
+.course-details-title{
+    padding-top: 30px;
+    margin:15px;
+    width: 100%; 
+    background-color: var(--color-primary);
+    padding:10px;   
+    height:100%;
+}
+.course-details-title h2{
+    margin-top: 50px;
+}
+.course-details-subject{
+    width:100%;
+    margin-bottom: 10px;
+}
+.course-details-description{
+    width:100%;
+    padding:10px;
+    padding-left:25px;
+    margin-bottom: 10px;
+   
+}
+.course-details{
+    width: 100%;
+    justify-content: space-evenly;
+}
+.course-enroll{
+    width: 100%;
+    margin-top: 10px;
+    height: 50px;
+}
