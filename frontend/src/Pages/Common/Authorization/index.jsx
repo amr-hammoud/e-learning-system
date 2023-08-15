@@ -79,7 +79,7 @@ function AuthorizationPage({ setUser, user }) {
 					} else if (response.user.role === "Teacher") {
 						navigate("/teacher/courses");
 					} else if (response.user.role === "Student") {
-						navigate("/student/my-courses");
+						navigate("/student/my courses");
 					} else if (response.user.role === "Parent") {
 						navigate("/parent/children");
 					}

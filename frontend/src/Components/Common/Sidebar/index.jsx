@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
+import { BiLogOut } from "react-icons/bi";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -60,6 +61,7 @@ const Sidebar = ({ items, selected = items[0] }) => {
 				onClick={() => handleLogout()}
 				ref={logoutButton}
 			>
+				<BiLogOut />
 				Logout
 			</div>
 		</div>
