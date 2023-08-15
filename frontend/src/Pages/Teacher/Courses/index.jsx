@@ -42,14 +42,15 @@ const TeacherCoursesPage = () => {
 			<Sidebar
 				items={["Courses", "Messages", "Conferences"]}
 				selected={"Courses"}
-				setActiveCourse={(id) => setActiveCourse(id)}
 			/>
 			<div className="container">
+
 			{ !activeCourse && <div className="course-container">
 			{courses?.map((course) => (
-				<TeacherCourseCard key={course.id} course={course} setActiveCourse={(id) => setActiveCourse(id)} />
+				<TeacherCourseCard key={course.id} course={course} setActiveCourse={setActiveCourse}/>
 			))}
 			</div>}
+
 			{ activeCourse && <div>
 				<Navbar items={["Stream", "Classwork", "Sessions", "Discussion", "People", "Grades"]} selected={"Stream"} onTabChanged={(tab) => setActiveTab(tab) } />
 

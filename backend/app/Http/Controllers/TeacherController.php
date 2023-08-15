@@ -11,6 +11,7 @@ use App\Models\Material;
 use App\Models\Assessment;
 use App\Models\Meeting;
 use App\Models\User;
+use Carbon\Carbon;
 
 class TeacherController extends Controller
 {
@@ -97,6 +98,8 @@ class TeacherController extends Controller
         $host = Auth::user();
         $guest = User::where('email', $request->email)->first();
 
+        $request->date_time = Carbon::parse($request->date_time)->format('Y-m-d H:i:s');
+
         $meeting = new Meeting;
         $meeting->host_id = $host->id;
         $meeting->guest_id = $guest->id;
@@ -104,7 +107,7 @@ class TeacherController extends Controller
         $meeting->date_time = $request->date_time;
         $meeting->save();
         return response()->json([
-            'status' => 'meeting scheduled successfully',
+            'status' => 'success',
             'meeting' => $meeting
         ]);
     }
