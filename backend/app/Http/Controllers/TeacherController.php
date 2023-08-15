@@ -130,4 +130,19 @@ class TeacherController extends Controller
             'data' => $formattedMeetings,
         ], 200);
     }
+
+
+    public function getCourseData($course_id){
+        $course = Course::find($course_id)->first();
+        $course->material = Material::where('course_id', $course_id)->get();
+        $course->meetings = Meeting::where('host_id', $course->teacher_id)->get();
+        $course->students = $course->students()->with('parents')->get();
+        
+        return response()->json([
+            'status' => 'success',
+            'course' => $course,
+        ], 200);
+        
+    }
+
 }
