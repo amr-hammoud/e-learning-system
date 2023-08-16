@@ -1,0 +1,32 @@
+.chart-container {
+    width: 100%;
+    height: fit-content;
+}
+.bar {
+    fill: var(--color-primary);
+}
+.axis-x path,
+.axis-y path {
+    fill: none;
+    stroke: var(--color-dark-gray);
+}
+
+.axis-x text,
+.axis-y text {
+    font-size: 12px;
+}
+
+.chart-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.chart {
+    width: fit-content;
+}
+
+.chart svg{
+    width: fit-content;
+    
+}
