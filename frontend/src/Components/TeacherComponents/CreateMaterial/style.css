@@ -1,4 +1,4 @@
-.create-meeting__form {
+.create-material__form {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,24 +9,24 @@
   font-size: 1.2rem;
 }
 
-.create-meeting__input {
+.create-material__input {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.create-meeting__input label {
+.create-material__input label {
   margin-bottom: 0.5rem;
 }
 
-.create-meeting__input input {
+.create-material__input input {
   border: 1px solid var(--color-text-secondary);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
   font-size: 1.2rem;
 }
 
-.create-meeting__buttons {
+.create-material__buttons {
   margin-top: 1rem;
   display: flex;
   justify-content: space-around;

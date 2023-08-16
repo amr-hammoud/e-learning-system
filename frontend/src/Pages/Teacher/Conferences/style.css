@@ -9,7 +9,7 @@
     height: 100%;
 }
 
-.container button {
+.create-meeting {
     border: none;
     border-radius: 0.5rem;
     background-color: var(--color-primary);

@@ -1,22 +1,24 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
-import CourseCard from "../../../Components/TeacherComponents/CourseCard";
+import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
+import Navbar from "../../../Components/Common/Navbar";
+import Stream from "../../../Components/TeacherComponents/Stream/Stream";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
-import { useFetcher } from "react-router-dom";
 
-function TeacherCoursesPage() {
-	
+const TeacherCoursesPage = () => {
+	const [activeTab, setActiveTab] = useState("Stream");
 	const [courses, setCourses] = useState([]);
+	const [activeCourse, setActiveCourse] = useState(null);
 
 	useEffect(() => {
+		setActiveCourse(null);
 
 		const getCourses = async () => {
 			try {
 				const response = await sendRequest({route: "teacher/courses"});
 				setCourses(response.courses);
-				console.log(response.courses);
 			} catch (error) {
 				console.log(error);
 			}
@@ -24,6 +26,16 @@ function TeacherCoursesPage() {
 
 		getCourses();
 	}, []);
+
+	useEffect(() => {
+
+		
+
+	}, [activeCourse]);
+
+	useEffect(() => {
+		console.log(activeTab);
+	}, [activeTab]);
 	
 
 	return (
@@ -32,10 +44,25 @@ function TeacherCoursesPage() {
 				items={["Courses", "Messages", "Conferences"]}
 				selected={"Courses"}
 			/>
-			<div className="container courses-container">
+			<div className="container">
+
+			{ !activeCourse && <div className="course-container">
 			{courses?.map((course) => (
-				<CourseCard key={course.id} course={course} />
+				<TeacherCourseCard key={course.id} course={course} setActiveCourse={setActiveCourse}/>
 			))}
+			</div>}
+
+			{ activeCourse && <div>
+				<Navbar items={["Stream", "Classwork", "Sessions", "Discussion", "People", "Grades"]} selected={"Stream"} onTabChanged={(tab) => setActiveTab(tab) } />
+                {activeTab === "Stream" && <div className="course-stream">
+					<Stream activeCourse={activeCourse} />
+					</div>} 
+				
+
+
+				</div>}
+
+			
 			</div>
 		</div>
 	);

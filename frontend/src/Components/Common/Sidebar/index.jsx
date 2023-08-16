@@ -63,7 +63,7 @@ const Sidebar = ({ items, selected = items[0] }) => {
 				ref={logoutButton}
 			>
 				<BiLogOut />
-				Logout
+				Log out
 			</div>
 		</div>
 	);
