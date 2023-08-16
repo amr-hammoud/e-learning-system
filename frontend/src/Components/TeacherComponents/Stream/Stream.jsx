@@ -19,12 +19,12 @@ const Stream = ({activeCourse}) => {
             <button onClick={toggleModal} className="create-material">Create Meeting</button>
 				<CreateMaterial showModal={showModal} toggleModal={toggleModal} activeCourse={activeCourse}/>
 				<div className="meetings-container">
-				     {/* {materials?.map((material) => (
+				     {materials?.map((material) => (
 					    <MaterialItem
 						   key={material.id}
 						   material={material}
 					    />
-				    ))} */}
+				    ))}
 				</div>
         </div>
     )
