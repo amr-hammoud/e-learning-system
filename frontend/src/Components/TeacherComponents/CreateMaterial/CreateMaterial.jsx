@@ -22,7 +22,6 @@ const CreateMaterial = ({showModal , toggleModal, activeCourse}) => {
 
     const handleSubmit = async (e) => {
         
-        console.log(materialData);
         const data = new FormData();
         data.append("course_id", materialData.course_id);
         data.append("title", materialData.title);

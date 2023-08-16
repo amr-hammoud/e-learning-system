@@ -3,6 +3,7 @@ import Sidebar from "../../../Components/Common/Sidebar";
 import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCourseCard";
 import Navbar from "../../../Components/Common/Navbar";
 import Stream from "../../../Components/TeacherComponents/Stream/Stream";
+import Classwork from "../../../Components/TeacherComponents/Classwork/Classwork";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
@@ -57,6 +58,9 @@ const TeacherCoursesPage = () => {
                 {activeTab === "Stream" && <div className="course-stream">
 					<Stream activeCourse={activeCourse} />
 					</div>} 
+				{activeTab === "Classwork" && <div className="course-stream">
+					<Classwork activeCourse={activeCourse} />
+					</div>}
 				
 
 

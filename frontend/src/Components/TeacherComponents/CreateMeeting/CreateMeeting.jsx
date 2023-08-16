@@ -20,7 +20,6 @@ const CreateMeeting = ({showModal , toggleModal}) => {
         const timePart = meetingData.date_time.split('T')[1];
         const formattedDateTime = `${datePart} ${timePart}:00`;
         setMeetingData({ ...meetingData, date_time: formattedDateTime });
-        console.log(meetingData);
 
         e.preventDefault();
         try {
