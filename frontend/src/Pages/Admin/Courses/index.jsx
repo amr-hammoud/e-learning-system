@@ -15,6 +15,17 @@ const AdminCoursesPage = () => {
 		setCourses(response.courses);
 	};
 
+	const deleteCourse = async (id) => {
+		const response = await sendRequest({
+			method: "DELETE",
+			route: `/admin/course/delete/${id}`,
+		});
+		if (response.status === "success") {
+			fetchCourses();
+		}
+	};
+
+
 	useEffect(() => {
 		fetchCourses();
 	}, []);
@@ -42,7 +53,7 @@ const AdminCoursesPage = () => {
 							<CourseRow
 								key={index}
 								course={course}
-								// onDelete={(id) => deleteCourse(id)}
+								onDelete={(id) => deleteCourse(id)}
 								// onUpdate={() => {
 								// 	setCourseData(course);
 								// 	toggleUpdateModal();
