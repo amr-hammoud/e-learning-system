@@ -4,6 +4,7 @@ import TeacherCourseCard from "../../../Components/TeacherComponents/TeacherCour
 import Navbar from "../../../Components/Common/Navbar";
 import Stream from "../../../Components/TeacherComponents/Stream/Stream";
 import Classwork from "../../../Components/TeacherComponents/Classwork/Classwork";
+import People from "../../../Components/TeacherComponents/People/People";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
@@ -47,7 +48,7 @@ const TeacherCoursesPage = () => {
 			/>
 			<div className="container">
 
-			{ !activeCourse && <div className="course-container">
+			{ !activeCourse && <div className="courses-container">
 			{courses?.map((course) => (
 				<TeacherCourseCard key={course.id} course={course} setActiveCourse={setActiveCourse}/>
 			))}
@@ -60,6 +61,9 @@ const TeacherCoursesPage = () => {
 					</div>} 
 				{activeTab === "Classwork" && <div className="course-stream">
 					<Classwork activeCourse={activeCourse} />
+					</div>}
+				{activeTab === "People" && <div className="course-stream">
+					<People activeCourse={activeCourse} />
 					</div>}
 				
 
