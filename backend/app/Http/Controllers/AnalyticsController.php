@@ -58,7 +58,7 @@ class AnalyticsController extends Controller
         $total_assigned_assignments = Course::find($course_id)->assessments->where('assessment_type_id', '2')->count();
 
         if ($total_assigned_assignments == 0){
-            return 100;
+            return 0;
         }
 
         $assignments = Assessment::where('course_id', $course_id)->where('assessment_type_id', '2')->get();
@@ -82,7 +82,7 @@ class AnalyticsController extends Controller
         $total_assigned_quizzes = Course::find($course_id)->assessments->where('assessment_type_id', '1')->count();
 
         if ($total_assigned_quizzes == 0){
-            return 100;
+            return 0;
         }
 
         $quizzes = Assessment::where('course_id', $course_id)->where('assessment_type_id', '1')->get();
@@ -107,6 +107,9 @@ class AnalyticsController extends Controller
         $students = Course::find($course_id)->students;
 
         $total_students = $students->count();
+        if ($total_students == 0){
+            $total_students = 1;
+        }
 
         $total_assignments_grade = 0;
 
@@ -126,6 +129,9 @@ class AnalyticsController extends Controller
         $students = Course::find($course_id)->students;
 
         $total_students = $students->count();
+        if ($total_students == 0){
+            $total_students = 1;
+        }
 
         $total_quizzes_grade = 0;
 
