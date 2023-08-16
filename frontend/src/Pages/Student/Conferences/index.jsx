@@ -19,7 +19,7 @@ const StudentConferencesPage=()=>{
 			/>
 			{/* <div className="container">Conferences</div> */}
 			<div className="course-browse-container">
-			<div class="flex column meeting-container white-bg rounded ">
+			<div className="flex column meeting-container white-bg rounded ">
 				<div className="new-conference flex row center">
 					<Button 
 					color={"primary-bg"}

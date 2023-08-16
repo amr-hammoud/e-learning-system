@@ -30,7 +30,7 @@ const StudentStream=({course})=>{
         "content":"A new Airbnb workshop will be held today"
     }
 	return (
-    <div class="course-stream-container primary-bg">
+    <div className="course-stream-container primary-bg">
         <div className="flex column course-stream">
             <div className="stream-head rounded blue-bg white-color">
                <span>{course.title}</span>
