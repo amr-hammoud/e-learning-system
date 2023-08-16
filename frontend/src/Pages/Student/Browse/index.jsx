@@ -72,7 +72,7 @@ const StudentBrowsePage=()=>{
 			            })}
 			</div>
 			<div className=" course-details-popup flex center">
-				<CourseCardDetails course={course}/>
+				{/* <CourseCardDetails course={course}/> */}
 			</div>
 		</div>
 	);
