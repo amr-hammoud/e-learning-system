@@ -35,6 +35,7 @@ const ModalComponent = ({ showModal, onRequestClose, children }) => {
       onRequestClose={onRequestClose}
       style={customStyles}
       contentLabel="Modal"
+      appElement={document.getElementById('root')}
     >
       {children}
     </Modal>

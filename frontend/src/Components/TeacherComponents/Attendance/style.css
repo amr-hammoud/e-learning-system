@@ -1,0 +1,51 @@
+.teacher-attendance {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 600px;
+  height: fit-content;
+  padding: 20px;
+}
+
+.teacher-attendance__list__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.attendance__buttons {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
+}
+
+.confirm-button {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+.cancel-button {
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--color-text-secondary);
+  color: var(--color-white);
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+}
+
+.cancel-button:hover {
+  background-color: var(--color-dark-gray);
+}
+
+.confirm-button:hover {
+  background-color: var(--color-primary-dark);
+}
