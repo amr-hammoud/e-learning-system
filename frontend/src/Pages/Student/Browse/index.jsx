@@ -1,7 +1,7 @@
 import React from "react";
 import Sidebar from "../../../Components/Common/Sidebar";
 import './style.css'
-import CourseCard from "../../../Components/Student/CourseCard";
+
 import CourseCardDetails from "../../../Components/Student/CourseDetails";
 const StudentBrowsePage=()=>{
 	const course={"title": "Artificial Intelligence",

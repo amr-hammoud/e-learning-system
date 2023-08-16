@@ -33,7 +33,7 @@ class ParentController extends Controller
                 $grade=Grade::where("assessment_id",$ass->id)->where("user_id",$student_id)->first();
                 $grades[]=[
                     'assessment'=>$ass->title,
-                    'grade'=> $grade->grade,                   
+                    'grade' => $grade ? $grade->grade : null,                 
                 ];
              }
             $course_info[] = [
@@ -63,7 +63,7 @@ class ParentController extends Controller
             return response()->json([
                 'parent'=>$parent->first_name. " ".$parent->last_name,
                 'teacher'=>$teacher->first_name." ". $teacher->last_name,
-                'message sent'=>$message->content,
+                'message_sent'=>$message->content,
                 'date-sent-at'=>$message->created_at->format('d.m.Y'),
                 'time-sent-at'=>$message->created_at->addhours(3)->format('H:i:s')                
             ]);

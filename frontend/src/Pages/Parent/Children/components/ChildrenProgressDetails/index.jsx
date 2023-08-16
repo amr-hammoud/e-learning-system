@@ -32,10 +32,8 @@ const ChildrenProgressDetails = () => {
         <Navbar items={["Progress", "Notifications"]}
             selected={"Progress"}
             onTabChanged={(tab) => {setActiveTab(tab)}}/>
-          <Header title={"Course title"}/>
-          <div className="flex spaceAround">
-            <ChildrenProgressCard text={"Assignments"}/>
-            <ChildrenProgressCard text={"Quizzes"}/>
+          <div className="flex spaceEvenly">
+            <ChildrenProgressCard text={"Assessments"}/>
             <ChildrenProgressCard text={"Attendances"}/>
           </div>
         </div>

@@ -1,4 +1,6 @@
 .details-container{
     width: 80%;
 }
-
+.spaceEvenly{
+    justify-content: space-evenly;
+}

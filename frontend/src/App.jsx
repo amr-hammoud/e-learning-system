@@ -31,6 +31,7 @@ import StudentBrowsePage from "./Pages/Student/Browse";
 import StudentCoursesPage from "./Pages/Student/MyCourses";
 import StudentMessagesPage from "./Pages/Student/Messages";
 import StudentConferencesPage from "./Pages/Student/Conferences";
+import Assessments from "./Pages/Parent/Children/components/Assessments";
 function App() {
 
 	const [user, setUser] = useState({
@@ -59,6 +60,7 @@ function App() {
 				<Route path="/parent/ChildrenProgress" element={<ChildrenProgress />} />
 				<Route path="/parent/ChildrenProgressDetails" element={<ChildrenProgressDetails />} />
 				<Route path="/parent/Assignments" element={<Assignments />} />
+				<Route path="/parent/Assessments" element={<Assessments />} />
 				<Route path="/parent/Quizzes" element={<Quizzes />} />
 				<Route path="/parent/Attendances" element={<Attendances />} />
 				<Route path="/parent/Chat" element={<Chat />} />
