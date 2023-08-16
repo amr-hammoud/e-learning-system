@@ -11,9 +11,6 @@ const Progress=({percentage})=>{
                 <CircularProgressbar 
                     value={percentage.value} 
                     text={`${percentage.value}%`}
-                    
-                    
-                    
                      />
             </div>
             <div className="progress-title">

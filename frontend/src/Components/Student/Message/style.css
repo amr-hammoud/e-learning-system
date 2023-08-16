@@ -1,0 +1,19 @@
+.msg-card{
+    width: 250px;
+    height:100px;
+    gap:4px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+.msg-info{
+    padding-top:20px;
+    width:100%;
+    padding-left:15px;
+    }
+
+.msg-time{
+    justify-content: flex-end;
+}
+.msg-time span{
+padding-right: 15px;
+}

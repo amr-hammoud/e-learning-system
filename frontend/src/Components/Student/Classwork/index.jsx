@@ -2,27 +2,28 @@ import React from "react";
 import './style.css';
 import Button from "../../Base/Button/index.jsx";
 
-const  Classwork=({ass})=> {
-	return (
-    <div className="flex column classwork-details rounded ">
+const  Classwork=({assessment})=> {
+   
+    return (
+    <div class="flex column classwork-details rounded ">
         <div className="classwork-info flex column">
             <div className="classwork-title flex column roundedSmall">
                 <h2 className="dark-gray">
-                {ass.title}
+                {assessment.title}
                 </h2>
                 <div className="classwork-data flex row">
                     <div className="classwork-date">
-                        <span className="dark-gray">Due : {ass.dueDate} {ass.dueTime}</span>
+                        <span className="dark-gray">Due : {assessment.dueDate} </span>
                     </div>
                     <div className="classwork-grade">
-                    <span className="dark-gray">Grade : /{ass.grade}</span>
+                    <span className="dark-gray">Grade : {assessment.grade}</span>
                     </div>
                 </div>
             </div>
             <div className="classwork-instructions flex row ">
             <div className="classwork-content roundedSmall">
                 <div className="classwork-description">
-                {ass.description}
+                {assessment.description}
                 </div>
             </div>
             <div className="classwork-attach flex primary-bg roundedSmall">

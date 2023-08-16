@@ -1,0 +1,33 @@
+.msg-container{
+    height:400px;
+    justify-content: space-between;
+    margin:30px;
+}
+.msg-rows{
+    margin-top: 15px;
+    width: 100%;
+    overflow-y: scroll;
+    gap:15px;
+}
+.msg-row{
+    gap:15px
+}
+.input-box{
+    width: 100%;
+    margin-bottom: 10px;
+    gap:20px;
+}
+.input-box input{
+    width: 80%;
+    height:50px;
+    font-size: 18px;
+    color:black;
+    padding-left: 10px;
+    margin-left: 10px;
+}
+.input-box input:focus{
+    border:1px solid #555;
+}
+.btnSend{
+    margin-left: 35px;
+}

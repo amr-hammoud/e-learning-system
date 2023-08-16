@@ -10,12 +10,8 @@
 .stream-head span{
     padding-left: 10px;
 }
-.stream-container{
-    max-height: 448px;  
+.course-stream-container{
     gap:20px;
     overflow-y:scroll;
-}
-.progress-data{
-    width: 100%;
-    margin-left: 25px;
+    width:100%;
 }

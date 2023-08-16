@@ -1,66 +1,74 @@
 import React from "react";
 import './style.css';
+import Navbar from "../../../Components/Common/Navbar";
+import { useState,useEffect } from "react";
+import Sidebar from "../../../Components/Common/Sidebar";
+import { sendRequest } from "../../../config/request";
+import {useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import CourseStream from "../../../Components/Student/CourseStream";
-import Classwork from "../../../Components/Student/Classwork";
-import Session from "../../../Components/Student/Session";
-import Notification from "../../../Components/Student/Notification";
-import Progress from "../../../Components/Student/Progress";
-const StudentStream=({course})=>{
-    const ass={"title": "AI Assignment",
-                "description": "Implement a sentiment analysis model using a neural network architecture. The model should be trained on a dataset of movie reviews and be able to classify the sentiment of a given review as positive or negative.",
-                "submissionDate": "2022-10-15",
-                "dueDate": "2022-10-30",
-                "dueTime":"11:59",
-                "grade":"100",
-                "attachment": "https://example.com/ai_assignment.pdf"
+const StudentStream=()=>{
+    const {id} = useParams();
+    const course_id=id;
+    console.log(course_id);
+    const [streamA, setStreamA] = useState([]);
+    const getCourseMaterialAndAssessments=async ()=>{
+		try{
+			const response=await sendRequest({
+				method:"POST",
+				route:"/student/progress-tracking/get-assesments",
+				body:" ",
+				includeHeaders:true
+			})
+			console.log(response);
+			setStreamA(response);
+		}catch (error) {
+			console.log(error);
+        }
+	}
+	useEffect(() => {getCourseMaterialAndAssessments();},[]);
+    const [activeTab,setActiveTab]=useState("Stream");
+    const navigation=useNavigate();
+    if (activeTab==="Classwork"){
+        navigation('/student/my courses/course/classwork/assessment/1')
+        setActiveTab("Classwork")
     }
-    const session={
-        "date":"2022-10-30",
-        "time":"10:00",
-        "link":"https://meet.google.com/abc123xyz"
+    if (activeTab==="Sessions"){
+        navigation('/student/my courses/course/sessions')
+        setActiveTab("Sessions")
     }
-    const percentage={
-        "topic":"Assignments",
-        "value":"45"
+     if (activeTab==="Chat"){
+        navigation('/student/my courses/message/teacher')
+        setActiveTab("Chat")
     }
-
-    const notification={
-        "date":"2022-10-30",
-        "time":"10:00",
-        "content":"A new Airbnb workshop will be held today"
+     if (activeTab==="Progress"){
+        navigation('/student/my courses/course/progress')
+        setActiveTab("Progress")
     }
-	return (
-    <div className="course-stream-container primary-bg">
-        <div className="flex column course-stream">
-            <div className="stream-head rounded blue-bg white-color">
-               <span>{course.title}</span>
+    if (activeTab==="Notification"){
+        navigation('/student/my courses/course/notification')
+        setActiveTab("Notification")
+    }
+    return (
+        <div className="page flex">
+            <Sidebar
+			    items={["My Courses", "Browse", "Messages", "Conferences"]}
+			    selected={"My Courses"}
+			/>
+            <div class="course-stream-container primary-bg">
+                <Navbar items={["Stream","Classwork","Sessions","Chat","Progress","Notifications"]} 
+                    selected={"Stream"}
+                    onTabChanged={(tab)=>{setActiveTab(tab)}} />   
+                <div className="flex column course-stream">
+                    <div className="spacer-30"></div>
+                    <div className="stream-container flex column">
+                        {streamA.map((stream, index) => {
+				        return <CourseStream stream={stream} key={index}  />;
+			            })}
+                    </div>
+                </div>
             </div>
-            <div className="spacer-30"></div>
-            {/* <div className="stream-container flex column">
-                <CourseStream ass={ass}/>
-                <CourseStream ass={ass}/>
-                <CourseStream ass={ass}/>
-                <CourseStream ass={ass}/>
-                <CourseStream ass={ass}/>
-            </div> */}
-
-            {/* <div className="flex center primary-">
-                <Classwork ass={ass}/>
-            </div> */}
-
-
-            {/* <Session session={session}/>
-            <Session session={session}/> */}
-
-            {/* <Notification notification={notification} /> */}
-            <div className=" progress-data flex row">
-                <Progress percentage={percentage} />
-                <Progress percentage={percentage} />
-                <Progress percentage={percentage} />
-            </div>
-            
         </div>
-    </div>
     );
 }
 export default StudentStream;
