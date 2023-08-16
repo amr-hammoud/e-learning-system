@@ -39,8 +39,6 @@ const AdminUsersPage = () => {
 		}
 	};
 
-	const handleUpdateUser = (id) => {};
-
 	const createUser = async (userData) => {
 		console.log("DATA: ", userData);
 		const response = await sendRequest({
@@ -82,8 +80,8 @@ const AdminUsersPage = () => {
 					<h1>Users</h1>
 					<button onClick={toggleCreateModal}>Create User</button>
 				</div>
-				<div className="users-container">
-					<div className="users-header">
+				<div className="list-container">
+					<div className="list-header">
 						<div className="users-header-name">User Name</div>
 						<div className="users-header-role">Role</div>
 						<div className="users-header-actions">Actions</div>
