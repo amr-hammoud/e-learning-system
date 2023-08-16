@@ -1,4 +1,4 @@
-.course-card {
+.teacher-course-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@
     position: relative;
 }
 
-.course-card:hover {
+.teacher-course-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
 }
@@ -31,5 +31,6 @@
 }
 
 .course-card__info {
+    width: 100%;
     margin-top: 192px;
 }

@@ -41,15 +41,15 @@ Route::group(["middleware" => "admin", "prefix" => "admin"], function () {
 
 
 Route::group(["middleware" => "teacher", "prefix" => "teacher"], function () {
+    Route::get('/courses', [TeacherController::class, 'getCourses']);
 
     Route::group(['middleware' => 'teacherCourse', "prefix" => 'course'], function () {
-        Route::get('/{id?}', [TeacherController::class, 'courses']);
         Route::get('get/{id}', [TeacherController::class, 'getCourseData']);
         Route::post('material/create', [TeacherController::class, 'createMaterial']);
-        Route::post('material', [TeacherController::class, 'getMaterial']);
+        Route::get('materials/{id}', [TeacherController::class, 'getMaterials']);
         Route::get('{id}/students', [CourseController::class, 'students']);
     });
-    Route::get('conference', [TeacherController::class, 'getConferences']);
+    Route::get('conferences', [TeacherController::class, 'getConferences']);
     Route::post('conference/create', [TeacherController::class, 'createConference']);
 });
 
@@ -83,8 +83,8 @@ Route::group(["middleware" => "student", "prefix" => "student"], function () {
     });
 });
 
-Route::group(["prefix" => "parent"], function () {
-    Route::get("{parent}/get-student-progress-of-course/{student}/{course}", [ParentController::class, "getStudentProgress"]);
+Route::group(["middleware" => "parent", "prefix" => "parent"], function () {
+    Route::get("get-student-progress-of-course", [ParentController::class, "getStudentProgress"]);
     Route::post('message-teacher', [ParentController::class, "sendMessage"]);
     Route::post('messages-teacher', [ParentController::class, "getMessages"]);
     Route::post('get-student-schedule-records', [ParentController::class, "viewSchedule"]);

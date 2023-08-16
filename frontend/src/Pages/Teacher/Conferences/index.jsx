@@ -1,37 +1,33 @@
 import Sidebar from "../../../Components/Common/Sidebar";
 import MeetingItem from "../../../Components/Common/MeetingItem/MeetingItem";
 import CreateMeeting from "../../../Components/TeacherComponents/CreateMeeting/CreateMeeting";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { sendRequest } from "../../../config/request";
 import './style.css'
 
 function TeacherConferencesPage() {
 
 	const [showModal, setShowModal] = useState(false);
+	const [meetings, setMeetings] = useState([]);
 
 	const toggleModal = () => {
 		setShowModal(!showModal);
 	};
 
-	const meetings = [
-		{
-			id: 1,
-			name: "John Doe",
-			date: "12/12/2020 12:00",
-			link: "https://meet.google.com/lookup/123456789",
-		},
-		{
-			id: 2,
-			name: "Jane Doe",
-			date: "12/12/2020 12:00",
-			link: "https://meet.google.com/lookup/123456789",
-		},
-		{
-			id: 3,
-			name: " Jack Doe",
-			date: "12/12/2020 12:00",
-			link: "https://meet.google.com/lookup/123456789",
-		},
-	];
+	useEffect(() => {
+		const getConferences = async () => {
+			try {
+				const response = await sendRequest({route: 'teacher/conferences'})
+			if (response.status === 'success') {
+				setMeetings(response.meetings);
+				console.log(response.meetings);
+			}
+			} catch (error) {
+				console.log(error);
+			}
+		}
+		getConferences();
+	}, []);
 
 
 	return (
@@ -41,10 +37,10 @@ function TeacherConferencesPage() {
 				selected={"Conferences"}
 			/>
 			<div className="container">
-				<button onClick={toggleModal}>Create Meeting</button>
+				<button onClick={toggleModal} className="create-meeting">Create Meeting</button>
 				<CreateMeeting showModal={showModal} toggleModal={toggleModal} />
 				<div className="meetings-container">
-				     {meetings.map((meeting) => (
+				     {meetings?.map((meeting) => (
 					    <MeetingItem
 						   key={meeting.id}
 						   meeting={meeting}

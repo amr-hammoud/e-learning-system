@@ -10,15 +10,19 @@ export const sendRequest = async ({
 }) => {
   if (!route) throw Error("URL required");
 
-  axios.defaults.headers.authorization = includeHeaders
-    ? `Bearer ${localStorage.getItem("access_token")}`
-    : "";
+  const headers = includeHeaders
+    ? {
+        Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        "Content-Type": "multipart/form-data",
+      }
+    : {};
 
   try {
     const response = await axios.request({
       method,
       url: route,
       data: body,
+      headers,
     });
 
     return response.data;

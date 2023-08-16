@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./style.css";
+import { BiLogOut } from "react-icons/bi";
 import logo from "../../../assets/logo.png";
 import SidebarItem from "../../Base/SidebarItem";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -17,14 +18,15 @@ const Sidebar = ({ items, selected = items[0] }) => {
 	useEffect(() => {
 		if (localStorage.getItem("access_token") == null) {
 			navigate("/");
-		} else {
-			const role = localStorage.getItem("role");
-			const base_location = location.pathname.split("/")[1];
-
-			if (role.toLowerCase() !== base_location.toLowerCase()) {
-				navigate("/e401");
-			}
 		}
+		// } else {
+		// 	const role = localStorage.getItem("role");
+		// 	const base_location = location.pathname.split("/")[1];
+
+		// 	if (role?.toLowerCase() !== base_location?.toLowerCase()) {
+		// 		navigate("/e401");
+		// 	}
+		// }
 	}, []);
 
 	const logoutButton = useRef();
@@ -60,7 +62,8 @@ const Sidebar = ({ items, selected = items[0] }) => {
 				onClick={() => handleLogout()}
 				ref={logoutButton}
 			>
-				Logout
+				<BiLogOut />
+				Log out
 			</div>
 		</div>
 	);

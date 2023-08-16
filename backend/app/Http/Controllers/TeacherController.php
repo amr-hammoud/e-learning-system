@@ -11,6 +11,7 @@ use App\Models\Material;
 use App\Models\Assessment;
 use App\Models\Meeting;
 use App\Models\User;
+use Carbon\Carbon;
 
 class TeacherController extends Controller
 {
@@ -23,18 +24,15 @@ class TeacherController extends Controller
     //TODO: Student Single Submission
     //TODO: Grade & Feedback
 
-    public function courses($id = null)
+    public function getCourses()
     {
         $user = Auth::user();
-        if ($id) {
-            $courses = Course::all()->where("id", $id)->where("teacher_id", $user->id)->first();
-        } else {
-            $courses = Course::where("teacher_id", $user->id)->get();
-        }
+        
+        $courses = Course::where("teacher_id", $user->id)->get();
 
         return response()->json([
             'status' => 'success',
-            'data' => $courses,
+            'courses' => $courses,
         ], 200);
     }
 
@@ -69,22 +67,14 @@ class TeacherController extends Controller
         }
     }
 
-    public function getMaterial(Request $request)
+    public function getMaterials($course_id)
     {
 
-        $request->validate([
-            'id' => 'numeric|exists:materials,id'
-        ]);
-
-        if ($request->id) {
-            $material = Material::find($request->id)->where("course_id", $request->course_id)->first();
-        } else {
-            $material = Material::orderBy('created_at', 'desc')->get();
-        }
+        $materials = Material::where('course_id', $course_id)->get();
 
         return response()->json([
             'status' => 'success',
-            'material' => $material,
+            'materials' => $materials,
         ], 200);
     }
 
@@ -100,6 +90,8 @@ class TeacherController extends Controller
         $host = Auth::user();
         $guest = User::where('email', $request->email)->first();
 
+        $request->date_time = Carbon::parse($request->date_time)->format('Y-m-d H:i:s');
+
         $meeting = new Meeting;
         $meeting->host_id = $host->id;
         $meeting->guest_id = $guest->id;
@@ -107,7 +99,7 @@ class TeacherController extends Controller
         $meeting->date_time = $request->date_time;
         $meeting->save();
         return response()->json([
-            'status' => 'meeting scheduled successfully',
+            'status' => 'success',
             'meeting' => $meeting
         ]);
     }
@@ -121,7 +113,7 @@ class TeacherController extends Controller
         $formattedMeetings = $meetings->map(function ($meeting) {
             return [
                 'name' => $meeting->guestname,
-                'date' => $meeting->formatteddatetime,
+                'date_time' => $meeting->formatteddatetime,
                 'link' => $meeting->meeting_link,
             ];
         });

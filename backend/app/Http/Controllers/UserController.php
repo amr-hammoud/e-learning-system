@@ -60,10 +60,10 @@ class UserController extends Controller{
 
     public function updateAccount(Request $request, $id){
         $request->validate([
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255', 
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+            'first_name' => 'string|max:255',
+            'last_name' => 'string|max:255', 
+            'email' => 'string|email|max:255',
+            'password' => 'string|min:6',
         ]);
 
         $user = User::where('email', $request->email)->where('id', '!=', $id)->first();
@@ -83,10 +83,10 @@ class UserController extends Controller{
         }
 
         $user->update([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name, 
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'first_name' => $request->first_name ? $request->first_name : $user->first_name,
+            'last_name' => $request->last_name ? $request->last_name : $user->last_name, 
+            'email' => $request->email ? $request->email : $user->email,
+            'password' => $request->password ? Hash::make($request->password) : $user->password,
         ]);
 
         $token = Auth::login($user);

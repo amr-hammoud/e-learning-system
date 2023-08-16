@@ -1,9 +1,13 @@
 .sidebar {
     width: 250px;
+    height: 100vh;
     display: flex;
     flex-flow: column;
     align-items: center;
     gap: 50px;
+    position: sticky;
+    left: 0;
+    top: 0;
 }
 
 .sidebar .logo {
@@ -28,6 +32,7 @@
     width: 80%;
     padding: 10px;
     border-radius: 10px;
+    margin-top: 60px;
 }
 
 .logout:hover {
