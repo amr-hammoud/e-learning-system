@@ -45,8 +45,8 @@ Route::group(["middleware" => "teacher", "prefix" => "teacher"], function () {
 
     Route::group(['middleware' => 'teacherCourse', "prefix" => 'course'], function () {
         Route::get('get/{id}', [TeacherController::class, 'getCourseData']);
-        Route::post('material/create', [TeacherController::class, 'createMaterial']);
-        Route::get('material/{id}', [TeacherController::class, 'getMaterial']);
+        Route::post('material/create', [TeacherController::class, 'createMaterials']);
+        Route::get('materials/{id}', [TeacherController::class, 'getMaterials']);
         Route::get('{id}/students', [CourseController::class, 'students']);
     });
     Route::get('conferences', [TeacherController::class, 'getConferences']);
