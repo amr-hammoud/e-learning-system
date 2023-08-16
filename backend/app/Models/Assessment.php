@@ -9,6 +9,8 @@ class Assessment extends Model
 {
     use HasFactory;
 
+    protected $appends = ['type'];
+
     public function feedbacks(){
         return $this->hasMany(FeedBack::class, 'assessment_id');
     }
@@ -23,6 +25,10 @@ class Assessment extends Model
 
     public function assessmentType(){
         return $this->belongsTo(AssessmentType::class, 'assessment_type_id'); 
+    }
+
+    public function getTypeAttribute(){
+        return $this->assessmentType->name;
     }
 
     public function course(){

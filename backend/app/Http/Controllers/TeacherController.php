@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Models\Course;
 use App\Models\Material;
 use App\Models\Assessment;
+use App\Models\AssessmentType;
 use App\Models\Meeting;
 use App\Models\User;
 use Carbon\Carbon;
@@ -121,6 +122,15 @@ class TeacherController extends Controller
         return response()->json([
             'status' => 'success',
             'meetings' => $formattedMeetings,
+        ], 200);
+    }
+
+    public function getAssessments($course_id){
+        $assessments = Assessment::where('course_id', $course_id)->get();
+
+        return response()->json([
+            'status' => 'success',
+            'assessments' => $assessments,
         ], 200);
     }
 
