@@ -10,13 +10,15 @@ import Sidebar from "../../../Components/Common/Sidebar";
 const ClassworkComponent=()=>{
     const {id} = useParams();
     const stream_id=id;
-    const ass={"title": "AI Assignment",
-                "description": "Implement a sentiment analysis model using a neural network architecture. The model should be trained on a dataset of movie reviews and be able to classify the sentiment of a given review as positive or negative.",
-                "submissionDate": "2022-10-15",
-                "dueDate": "2022-10-30",
-                "dueTime":"11:59",
-                "grade":"100",
-                "attachment": "https://example.com/ai_assignment.pdf"
+    const assessment={"ssessment_type_id":"2",
+        "attachment": "null",
+        "course_id":"1",
+        "created_at":"null",
+        "description":"You are asked to implement a Contact Manager Website using React and Laravel\r\nUsers shall be able to view Contacts. A contact is defined by the name, phone number, address (Latitude and Longitude). Use cards to display the contacts. \r\nUsers shall be able ",
+        "due_date" :"2023-08-20",
+        "grade":"100",
+        "id":"5",
+        "title":" Contact Manager Website"
     }
     const [activeTab,setActiveTab]=useState("Classwork");
     const navigation=useNavigate();
@@ -52,14 +54,10 @@ const ClassworkComponent=()=>{
                     selected={"Classwork"}
                     onTabChanged={(tab)=>{setActiveTab(tab)}} />   
                 <div className="flex column course-stream">
-                    <div className="stream-head rounded blue-bg white-color">
-                    <span>Course Name</span>
-                    </div>
                     <div className="spacer-30"></div>
                     <div className="flex center primary-">
-                        <Classwork ass={ass}/>
+                        <Classwork assessment={assessment}/>
                     </div>
-
                 </div>
             </div>
         </div>

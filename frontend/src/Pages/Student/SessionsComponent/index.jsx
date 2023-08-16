@@ -11,11 +11,11 @@ const SessionComponent=()=>{
 const {id} = useParams();
 
 
-    const session={
-        "date":"2022-10-30",
+    const sessions=[
+        {"date":"2023-08-21",
         "time":"10:00",
-        "link":"https://meet.google.com/abc123xyz"
-    }
+        "link":"https://meet.google.com/hjj-acck-qvs"}
+    ]
     const [activeTab,setActiveTab]=useState("Sessions");
     const navigation=useNavigate();
     if (activeTab==="Stream"){
@@ -54,8 +54,10 @@ const {id} = useParams();
                     <span>Course Name</span>
                     </div>
                     <div className="spacer-30"></div>
-                    <Session session={session}/>
-                    <Session session={session}/>
+                    {sessions.map((session, index) => {
+				        return  <Session session={session} key={index}  />;
+			            })}
+                    
                 </div>
             </div>
         </div>
