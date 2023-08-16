@@ -4,7 +4,7 @@ import "./styles/utilities.css";
 import "./styles/text.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-import AuthorizationPage from "./Pages/Common/Authorization";
+import AuthPage from "./Pages/Common/Auth";
 import StudentLandingPage from "./Pages/Student/Landing";
 import E404 from "./Pages/Errors/E404";
 import E401 from "./Pages/Errors/E401";
@@ -43,7 +43,7 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path="/" element={<AuthorizationPage user={user} setUser={setUser} />} />
+				<Route path="/" element={<AuthPage user={user} setUser={setUser} />} />
 				<Route path="/teacher/courses" element={<TeacherCoursesPage />} />
 				<Route path="/teacher/messages" element={<TeacherMessagesPage />} />
 				<Route path="/teacher/conferences" element={<TeacherConferencesPage />} />
