@@ -75,7 +75,7 @@ const AdminCoursesPage = () => {
 			<div className="container">
 				<div className="flex spaceBetween">
 					<h1>Courses</h1>
-					<button onClick={toggleCreateModal}>Create Course</button>
+					<button className="admin-create-button" onClick={toggleCreateModal}>Create Course</button>
 				</div>
 				<div className="list-container">
 					<div className="list-header">

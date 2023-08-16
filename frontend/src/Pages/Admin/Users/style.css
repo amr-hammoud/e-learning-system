@@ -26,3 +26,15 @@
     width: 10%;
     text-align: center;
 }
+
+.admin-create-button {
+    border: none;
+    border-radius: 0.5rem;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    font-size: 1.3rem;
+    font-weight: 700;
+    padding: .5rem 1rem;
+    position: absolute;
+    right: 1rem;
+}
