@@ -79,7 +79,7 @@ class CourseController extends Controller
             'start_date' => 'date',
             'end_date' => 'date',
             'meeting_link' => 'string|max:255',
-            'teacher_id' => 'integer',
+            'teacher_id' => 'integer|exists:users,id',
         ]);
 
         $user_id = $request->teacher_id;
@@ -103,17 +103,17 @@ class CourseController extends Controller
         }
 
         $course->update([
-            'name' => $request->name,
-            'subject' => $request->subject,
-            'description' => $request->description,
-            'max_enrollments' => $request->max_enrollments,
-            'total_sessions' => $request->total_sessions,
-            'total_assignments' => $request->total_assignments,
-            'total_quizzes' => $request->total_quizzes,
-            'start_date' => $start_date,
-            'end_date' => $end_date,
-            'meeting_link' => $request->meeting_link,
-            'teacher_id' => $request->teacher_id,
+            'name' => $request->name ? $request->name : $course->name,
+            'subject' => $request->subject ? $request->subject : $course->subject,
+            'description' => $request->description ? $request->description : $course->description,
+            'max_enrollments' => $request->max_enrollments ? $request->max_enrollments : $course->max_enrollments,
+            'total_sessions' => $request->total_sessions ? $request->total_sessions : $course->total_sessions,
+            'total_assignments' => $request->total_assignments ? $request->total_assignments : $course->total_assignments,
+            'total_quizzes' => $request->total_quizzes ? $request->total_quizzes : $course->total_quizzes,
+            'start_date' => $start_date ? $start_date : $course->start_date,
+            'end_date' => $end_date ? $end_date : $course->end_date,
+            'meeting_link' => $request->meeting_link ? $request->meeting_link : $course->meeting_link,
+            'teacher_id' => $request->teacher_id ? $request->teacher_id : $course->teacher_id,
         ]);
 
         return response()->json([
