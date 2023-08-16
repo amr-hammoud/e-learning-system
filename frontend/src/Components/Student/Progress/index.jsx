@@ -5,9 +5,9 @@ import 'react-circular-progressbar/dist/styles.css';
 const Progress=({percentage})=>{
 	
     return (
-    <div class="flex row progress-card  ">
+    <div className="flex row progress-card  ">
         <div className="progress-info flex column white-bg rounded">
-            <div class="percentage primary-bg rounded">
+            <div className="percentage primary-bg rounded">
                 <CircularProgressbar 
                     value={percentage.value} 
                     text={`${percentage.value}%`}
@@ -16,7 +16,7 @@ const Progress=({percentage})=>{
                     
                      />
             </div>
-            <div class="progress-title">
+            <div className="progress-title">
                 <p className="dark-gray">Completed {percentage.topic}</p>
             </div>
     

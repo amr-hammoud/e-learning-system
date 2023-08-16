@@ -4,9 +4,9 @@ import Button from "../../Base/Button";
 
 const NewMeeting=({teachers})=>{
 	return (
-    <div class="flex center meeting-card rounded ">
+    <div className="flex center meeting-card rounded ">
         <div className="meeting-info flex column">
-            <div class="meeting-data  primary-bg flex column roundedSmall">
+            <div className="meeting-data  primary-bg flex column roundedSmall">
                 <div className="row-meeting flex column">
                     <label>Choose a date-time</label>
                     <input type="datetime"/>

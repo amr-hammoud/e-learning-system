@@ -6,13 +6,13 @@ const  CourseCardDetails=({course})=> {
 	return (
 
 
-    <div class="flex column course-card-details primary-bg rounded ">
+    <div className="flex column course-card-details primary-bg rounded ">
         <div className="course-datails-info flex column">
-            <div class="course-details-title flex column roundedSmall">
+            <div className="course-details-title flex column roundedSmall">
                 <h2 className="white-color">
                 {course.title}
                 </h2>
-                <div class="course-details-subject">
+                <div className="course-details-subject">
                 <p className="white-color">{course.subject}</p>
                 </div>
             </div>

@@ -4,13 +4,13 @@ import Button from "../../Base/Button/index.jsx";
 
 const  Classwork=({ass})=> {
 	return (
-    <div class="flex column classwork-details rounded ">
+    <div className="flex column classwork-details rounded ">
         <div className="classwork-info flex column">
-            <div class="classwork-title flex column roundedSmall">
+            <div className="classwork-title flex column roundedSmall">
                 <h2 className="dark-gray">
                 {ass.title}
                 </h2>
-                <div class="classwork-data flex row">
+                <div className="classwork-data flex row">
                     <div className="classwork-date">
                         <span className="dark-gray">Due : {ass.dueDate} {ass.dueTime}</span>
                     </div>

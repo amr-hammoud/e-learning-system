@@ -4,7 +4,7 @@ import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendRequest } from "../../../config/request";
 
-function AuthorizationPage({ setUser, user }) {
+const AuthPage = ({ setUser, user }) => {
 	const navigate = useNavigate();
 	const submitButton = useRef();
 
@@ -127,4 +127,4 @@ function AuthorizationPage({ setUser, user }) {
 	);
 }
 
-export default AuthorizationPage;
+export default AuthPage;
