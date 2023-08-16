@@ -40,7 +40,6 @@ const AdminUsersPage = () => {
 	};
 
 	const createUser = async (userData) => {
-		console.log("DATA: ", userData);
 		const response = await sendRequest({
 			method: "POST",
 			route: "/admin/user/create",

@@ -61,7 +61,6 @@ const CourseCompletionChart = ({ data }) => {
 
 	return (
 		<div className="chart-container">
-			<h2 className="chart-title">Course Completion</h2>
 			<div ref={chartRef} className="chart"></div>
 		</div>
 	);
