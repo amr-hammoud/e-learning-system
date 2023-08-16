@@ -26,6 +26,7 @@ function PeopleTab({activeCourse}) {
 
 	return (
 			<div className="people-container">
+                <h1>Students</h1>
 				{people?.map((people) => (
 					<div className="people-item" key={people.id}>
 						<div className="person-name">
