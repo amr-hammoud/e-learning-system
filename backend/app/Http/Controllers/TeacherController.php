@@ -16,14 +16,6 @@ use Carbon\Carbon;
 
 class TeacherController extends Controller
 {
-    //TODO: Assessment CRUD
-    //TODO: Session CRUD
-    //TODO: Attendance CRUD
-    //TODO: Discussion Group
-    //TODO: Chats & Messages
-    //TODO: Student Submissions
-    //TODO: Student Single Submission
-    //TODO: Grade & Feedback
 
     public function getCourses()
     {
@@ -71,7 +63,7 @@ class TeacherController extends Controller
     public function getMaterials($course_id)
     {
 
-        $materials = Material::where('course_id', $course_id)->get();
+        $materials = Material::where('course_id', $course_id)->orderBy('id', 'desc')->get();
 
         return response()->json([
             'status' => 'success',
@@ -109,7 +101,7 @@ class TeacherController extends Controller
     {
         $user = Auth::user();
 
-        $meetings = Meeting::where('host_id', $user->id)->get();
+        $meetings = Meeting::where('host_id', $user->id)->orderBy('date_time', 'asc')->get();
 
         $formattedMeetings = $meetings->map(function ($meeting) {
             return [
@@ -126,7 +118,7 @@ class TeacherController extends Controller
     }
 
     public function getAssessments($course_id){
-        $assessments = Assessment::where('course_id', $course_id)->get();
+        $assessments = Assessment::where('course_id', $course_id)->orderby('id', 'desc')->get();
 
         return response()->json([
             'status' => 'success',
