@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react";
 import ModalComponent from "../../Base/Modal/modal";
 
-const UpdateUser = ({
-	showModal,
-	toggleModal,
-	handleRequest,
-	user,
-	handleUserData,
-}) => {
+const UpdateUser = ({ showModal, toggleModal, handleRequest, user }) => {
 	const [updatedUserData, setUpdatedUserData] = useState(user);
 
 	useEffect(() => {
@@ -28,7 +22,7 @@ const UpdateUser = ({
 	return (
 		<ModalComponent showModal={showModal} onRequestClose={toggleModal}>
 			<div className="create-user__form">
-				<h1>Create user</h1>
+				<h1>Update user</h1>
 				<div className="create-user__input">
 					<label htmlFor="firstName">First Name</label>
 					<input
