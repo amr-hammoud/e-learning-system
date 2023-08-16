@@ -6,6 +6,7 @@ import Stream from "../../../Components/TeacherComponents/Stream/Stream";
 import Classwork from "../../../Components/TeacherComponents/Classwork/Classwork";
 import People from "../../../Components/TeacherComponents/People/People";
 import Sessions from "../../../Components/TeacherComponents/Sessions/Sessions";
+import DiscussionTab from "../../../Components/TeacherComponents/Discussion/Discussion";
 import { useEffect, useState } from "react";
 import { sendRequest } from "../../../config/request";
 import "./style.css"
@@ -65,6 +66,9 @@ const TeacherCoursesPage = () => {
 					</div>}
 				{activeTab === "Sessions" && <div className="course-stream">
 					<Sessions activeCourse={activeCourse} />
+					</div>}
+				{activeTab === "Discussion" && <div className="course-stream">
+					<DiscussionTab activeCourse={activeCourse} />
 					</div>}
 				{activeTab === "People" && <div className="course-stream">
 					<People activeCourse={activeCourse} />

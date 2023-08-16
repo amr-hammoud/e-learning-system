@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./style.css";
-import Sidebar from "../../../Components/Common/Sidebar";
-import ChatRow from "../../../Components/Admin/Messaging/ChatRow";
+import ChatRow from "../../Admin/Messaging/ChatRow";
 import { AiOutlineSend } from "react-icons/ai";
-import Message from "../../../Components/Admin/Messaging/Message";
+import ChatBox from "../../../Pages/Parent/Messages/components/ChatBox";
+import Message from "../../Admin/Messaging/Message";
 
-const TeacherMessagesPage = () => {
+const DiscussionTab = () => {
 	const [chats, setChats] = useState([]);
 
 	const fetchUsers = () => {
@@ -52,10 +52,6 @@ const TeacherMessagesPage = () => {
 
 	return (
 		<div className="page flex">
-			<Sidebar
-				items={["Courses", "Messages", "Conferences"]}
-				selected={"Messages"}
-			/>
 			<div className="support-container">
 				<div className="chats-parent">
 					<div className="chats-container">
@@ -87,4 +83,4 @@ const TeacherMessagesPage = () => {
 	);
 };
 
-export default TeacherMessagesPage;
+export default DiscussionTab;
